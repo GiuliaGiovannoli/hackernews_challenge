@@ -4,7 +4,7 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   title: { type: String, min: 2, max: 80, required: true, unique: true },
   link: { type: String, min: 2, required: true, unique: true },
-  author: { type: String, min: 2, max: 80, required: true },
+  author: { type: Schema.Types.ObjectId, ref: "User", required: true },
   tot_likes: { type: Number, default: 0 }
 });
 
