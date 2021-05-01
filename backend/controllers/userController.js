@@ -1,8 +1,15 @@
 const User = require('../models/userModel')
 
+const bcrypt = require("bcryptjs");
+const jwt = require('jsonwebtoken')
+const { validationResult } = require("express-validator");
+
+
 exports.create_oneUser = async (req, res) => {
   const { username, email, password } = req.body
-  User.create({ username, email, password })
+  const salt = await bcrypt.genSalt(10);
+  saltedPassword = await bcrypt.hash(password, salt);
+  User.create({ username, email, password: saltedPassword })
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err.message))
 }
