@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import Axios from 'axios'
+
 import './styles.css'
 
 import Avatar from '@material-ui/core/Avatar';
@@ -52,7 +54,7 @@ export default function LoginRegister() {
   const submitRegister = (e) => {
     e.preventDefault();
     if (user.username !== '' && user.email !== '' && user.password !== '') {
-      console.log(user && user)
+      //
     }
     else {
       window.alert('Please fill all forms.')
@@ -62,33 +64,32 @@ export default function LoginRegister() {
 
   return (
     <>
-    <Container component="main" maxWidth="s" style={{ display: 'flex', justifyContent: 'space-around', alignContent: 'flex-start' }}>
+    <Container component="main" maxWidth="s" id="column"
+    style={{ display: 'flex', justifyContent: 'space-around', alignContent: 'flex-start', color: '#91091e' }}>
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <div className={classes.paper} id="card"
+      style={{ backgroundColor: '#fcecdd', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
+        <Avatar className={classes.avatar} style={{ backgroundColor: '#91091e' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
         <form className={classes.form} noValidate>
-          <Grid container spacing={1}>
+          <Grid container spacing={1} style={{ display: 'flex', justifyContent: 'center' }}>
             <Grid item xs={9} sm={10}>
               <TextField
                 autoComplete="username"
                 name="username"
-                variant="outlined"
                 required
                 fullWidth
                 id="username"
                 label="Username"
-                autoFocus
                 onChange={handleOnChange}
               />
             </Grid>
             <Grid item xs={9} sm={10}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 id="email"
@@ -100,7 +101,6 @@ export default function LoginRegister() {
             </Grid>
             <Grid item xs={9} sm={10}>
               <TextField
-                variant="outlined"
                 required
                 fullWidth
                 name="password"
@@ -116,7 +116,7 @@ export default function LoginRegister() {
             type="submit"
             variant="contained"
             color="primary"
-            style={{ width: '83%' }}
+            style={{ width: '83%', backgroundColor: '#91091e' }}
             className={classes.submit}
             onClick={submitRegister}
           >
@@ -127,8 +127,9 @@ export default function LoginRegister() {
 
 
       <CssBaseline />
-      <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
+      <div className={classes.paper} id="card"
+      style={{ backgroundColor: '#fcecdd', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
+        <Avatar className={classes.avatar} style={{ backgroundColor: '#91091e' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -136,7 +137,6 @@ export default function LoginRegister() {
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
-            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -147,7 +147,6 @@ export default function LoginRegister() {
             autoFocus
           />
           <TextField
-            variant="outlined"
             margin="normal"
             required
             fullWidth
@@ -163,12 +162,15 @@ export default function LoginRegister() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            style={{ backgroundColor: '#91091e' }}
           >
             Sign In
           </Button>
         </form>
       </div>
     </Container>
+
+    <CssBaseline />
     </>
   );
 }
