@@ -5,7 +5,8 @@ const { body } = require("express-validator");
 const { 
   create_oneUser,
   list_allUsers,
-  find_oneUser
+  find_oneUser,
+  login_user
 } = require('../controllers/UserController')
 
 router.post('/register', 
@@ -16,8 +17,10 @@ router.post('/register',
 ],
 create_oneUser)
 
-// router.get('/login', )
-router.get('/:id', find_oneUser)
-router.get('/', list_allUsers)
+router.get('/login', login_user)
+// router.get('/:id', find_oneUser)
+// router.get('/', list_allUsers)
+
+// next step: update infos?? !!
 
 module.exports = router;
