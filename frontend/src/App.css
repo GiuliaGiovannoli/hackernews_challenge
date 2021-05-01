@@ -1,0 +1,26 @@
+body {
+  color: #91091e;
+}
+
+#btn {
+  color: #91091e;
+  border: solid 1px #91091e;
+}
+
+#linkStyle {
+  text-decoration: none;
+  color: #91091e;
+}
+
+#card {
+  width: 40%;
+}
+
+@media only screen and (max-width: 750px) {
+  #column {
+    flex-direction: column;
+  }
+  #card {
+    width: 80%;
+  }
+}
