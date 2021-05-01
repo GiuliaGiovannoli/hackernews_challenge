@@ -2,8 +2,6 @@ const User = require('../models/userModel')
 
 const bcrypt = require("bcryptjs");
 const jwt = require('jsonwebtoken')
-const { validationResult } = require("express-validator");
-
 
 exports.create_oneUser = async (req, res) => {
   const { username, email, password } = req.body
@@ -25,4 +23,15 @@ exports.find_oneUser = async (req, res) => {
   User.findById(id)
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err.message))
+}
+
+exports.login_user = async (req, res) => {
+  const { email, password } = req.body
+  const user = User.findOne({email})
+  const matchingPassword = bcrypt.compare(password, user.password)
+  if (matchingPassword) {
+    user
+    .then(data => res.json(data))
+    .catch(err => res.status(500).json(err.message))
+  }
 }
