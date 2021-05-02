@@ -2,12 +2,16 @@ const express = require('express');
 const router = express.Router();
 const { body } = require("express-validator");
 
+const authenticatingUser = require('../middlewares/authentication')
+
 const { 
   create_oneUser,
   list_allUsers,
   find_oneUser,
   login_user
 } = require('../controllers/UserController')
+
+router.get('/login', login_user)
 
 router.post('/register', 
 [
@@ -17,11 +21,8 @@ router.post('/register',
 ],
 create_oneUser)
 
-router.get('/login', login_user)
-
 // router.get('/:id', find_oneUser)
 // router.get('/', list_allUsers)
 
-// next step: update infos?? !!
 
 module.exports = router;
