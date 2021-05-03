@@ -3,7 +3,9 @@ const Schema = mongoose.Schema;
 
 const postSchema = new Schema({
   title: { type: String, required: true, unique: true },
+  about: { type: String, required: true },
   link: { type: String, required: true, unique: true },
+  category: [ { type: String, required: true } ],
   author: { type: Schema.Types.ObjectId, ref: "User", required: true },
   tot_likes: { type: Number, default: 0 }
 });

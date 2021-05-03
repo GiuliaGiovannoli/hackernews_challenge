@@ -20,7 +20,4 @@ router.get('/', list_allPosts)
 
 router.post('/', authenticatingUser, create_onePost)
 
-//maybe add category and about in post model
-// def only author can update the post not everyone!
-
 module.exports = router;

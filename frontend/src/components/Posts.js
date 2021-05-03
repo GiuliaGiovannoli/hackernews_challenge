@@ -3,7 +3,6 @@ import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 
 import CreatePost from './CreatePost'
 import { LogInStatusContext } from '../context/LogInStatus'
-import { UserInfosContext } from '../context/UserInfos'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -36,8 +35,6 @@ export default function Posts() {
   const classes = useStyles();
 
   const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
-
-  const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
 
   return (
