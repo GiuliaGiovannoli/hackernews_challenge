@@ -41,10 +41,10 @@ export default function Posts() {
 
     <div style={{ display: 'flex', margin: '2% 15%', flexDirection:'column' }}>
     <Card className={classes.root} 
-    style={{ textAlign: 'center', boxShadow: '0px none', marginBottom: '2%', border: '1px solid #fcecdd' }}>
+    style={{ textAlign: 'center', boxShadow: '0px none', marginBottom: '2%', border: '1px solid #eeeeee' }}>
       <CardContent style={{ padding: '2%' }}>
         <Typography className={classes.title} color="textPrimary" 
-        style={{ color: '#91091e', fontSize: '1.1rem', textTransform: 'uppercase' }}>
+        style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>
           oiujdelikujzh gfdkjmskijs xjhncdxkus xayijunzsxku jcdsxkjucdxik cdsxucdujsxi kufvcdkujnz cdjgcdxj mnhfvcdxj gcdsxkujnhzfvhnfv cdjmbg fvc
         </Typography>
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>

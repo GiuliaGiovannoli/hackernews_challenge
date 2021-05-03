@@ -38,23 +38,62 @@ export default function LoginRegister() {
 
   const classes = useStyles();
 
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: ""
+  //REGISTRATION
+  const [userRegistrering, setUserRegistrering] = useState({
+    usernameRegistrering: "",
+    emailRegistrering: "",
+    passwordRegistrering: ""
   })
 
-  const handleOnChange = (e) => {
-    setUser({
-      ...user,
+  const handleOnChangeRegistrering = (e) => {
+    setUserRegistrering({
+      ...userRegistrering,
       [e.target.name]: e.target.value
     })
   }
 
-  const submitRegister = (e) => {
+  const submitRegistration = (e) => {
     e.preventDefault();
-    if (user.username !== '' && user.email !== '' && user.password !== '') {
-      //
+    if (userRegistrering.username !== '' && userRegistrering.email !== '' && userRegistrering.password !== '') {
+      Axios.post('http://localhost:4000/api/users/register', {
+        username: userRegistrering.username,
+        email: userRegistrering.email,
+        password: userRegistrering.password
+      }).then((res) => {
+        window.alert('You may now log in.')
+        // you should empty the inputs !!
+        // case for username or email already existing ?! ?! 
+      })
+    }
+    else {
+      window.alert('Please fill all forms.')
+    }
+  }
+
+  //LOG IN 
+  const [userLogging, setUserLogging] = useState({
+    emailLogging: "",
+    passwordLogging: ""
+  })
+
+  const handleOnChangeLogging = (e) => {
+    setUserLogging({
+      ...userLogging,
+      [e.target.name]: e.target.value
+    })
+  }
+
+  const submitLogIn = (e) => {
+    e.preventDefault();
+    if (userLogging.email !== '' && userLogging.password !== '') {
+      Axios.post('http://localhost:4000/api/users/login', {
+        email: userLogging.email,
+        password: userLogging.password
+      }).then((res) => {
+        console.log(res.data)
+        window.alert('You are now logged in.')
+        // it should open the dashboard user page !! 
+      })
     }
     else {
       window.alert('Please fill all forms.')
@@ -65,11 +104,11 @@ export default function LoginRegister() {
   return (
     <>
     <Container component="main" maxWidth="s" id="column"
-    style={{ display: 'flex', justifyContent: 'space-around', alignContent: 'flex-start', color: '#91091e' }}>
+    style={{ display: 'flex', justifyContent: 'space-around', alignContent: 'flex-start', color: '#3d84b8' }}>
       <CssBaseline />
       <div className={classes.paper} id="card"
-      style={{ backgroundColor: '#fcecdd', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
-        <Avatar className={classes.avatar} style={{ backgroundColor: '#91091e' }}>
+      style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
+        <Avatar className={classes.avatar} style={{ backgroundColor: '#3d84b8' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -79,36 +118,36 @@ export default function LoginRegister() {
           <Grid container spacing={1} style={{ display: 'flex', justifyContent: 'center' }}>
             <Grid item xs={9} sm={10}>
               <TextField
-                autoComplete="username"
-                name="username"
+                autoComplete="usernameRegistrering"
+                name="usernameRegistrering"
                 required
                 fullWidth
-                id="username"
+                id="usernameRegistrering"
                 label="Username"
-                onChange={handleOnChange}
+                onChange={handleOnChangeRegistrering}
               />
             </Grid>
             <Grid item xs={9} sm={10}>
               <TextField
                 required
                 fullWidth
-                id="email"
+                id="emailRegistrering"
                 label="Email Address"
-                name="email"
-                autoComplete="email"
-                onChange={handleOnChange}
+                name="emailRegistrering"
+                autoComplete="emailRegistrering"
+                onChange={handleOnChangeRegistrering}
               />
             </Grid>
             <Grid item xs={9} sm={10}>
               <TextField
                 required
                 fullWidth
-                name="password"
+                name="passwordRegistrering"
                 label="Password"
-                type="password"
-                id="password"
+                type="passwordRegistrering"
+                id="passwordRegistrering"
                 autoComplete="current-password"
-                onChange={handleOnChange}
+                onChange={handleOnChangeRegistrering}
               />
             </Grid>
           </Grid>
@@ -116,9 +155,9 @@ export default function LoginRegister() {
             type="submit"
             variant="contained"
             color="primary"
-            style={{ width: '83%', backgroundColor: '#91091e' }}
+            style={{ width: '83%', backgroundColor: '#3d84b8' }}
             className={classes.submit}
-            onClick={submitRegister}
+            onClick={submitRegistration}
           >
             Sign Up
           </Button>
@@ -128,8 +167,8 @@ export default function LoginRegister() {
 
       <CssBaseline />
       <div className={classes.paper} id="card"
-      style={{ backgroundColor: '#fcecdd', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
-        <Avatar className={classes.avatar} style={{ backgroundColor: '#91091e' }}>
+      style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
+        <Avatar className={classes.avatar} style={{ backgroundColor: '#3d84b8' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -145,6 +184,7 @@ export default function LoginRegister() {
             name="email"
             autoComplete="email"
             autoFocus
+            onChange={handleOnChangeLogging}
           />
           <TextField
             margin="normal"
@@ -155,6 +195,7 @@ export default function LoginRegister() {
             type="password"
             id="password"
             autoComplete="current-password"
+            onChange={handleOnChangeLogging}
           />
           <Button
             type="submit"
@@ -162,7 +203,8 @@ export default function LoginRegister() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            style={{ backgroundColor: '#91091e' }}
+            style={{ backgroundColor: '#3d84b8' }}
+            onClick={submitLogIn}
           >
             Sign In
           </Button>

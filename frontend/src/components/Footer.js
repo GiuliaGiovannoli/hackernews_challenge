@@ -16,7 +16,7 @@ export default function Footer() {
 
     
         return (
-            <footer style={{ backgroundColor: '#fcecdd', width: '100%', marginTop: '2%' }}>
+            <footer style={{ backgroundColor: '#eeeeee', width: '100%', marginTop: '2%' }}>
             <br></br>
             <div style={{ display: 'flex', justifyContent: 'space-around' }}>
               <Button id="btn">

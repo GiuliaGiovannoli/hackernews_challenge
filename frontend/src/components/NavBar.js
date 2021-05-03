@@ -39,7 +39,7 @@ export default function NavBar() {
 
   return (
     <React.Fragment>
-      <Toolbar className={classes.toolbar} style={{ backgroundColor: '#fcecdd' }}>
+      <Toolbar className={classes.toolbar} style={{ backgroundColor: '#eeeeee' }}>
       <Button variant="outlined" size="small" id="btn" onClick={handleClick}>
       Search here   
       <br></br> 
@@ -52,7 +52,7 @@ export default function NavBar() {
           align="center"
           noWrap
           className={classes.toolbarTitle}
-          style={{ color: '#91091e', fontWeight: 'bold' }}
+          style={{ color: '#3d84b8', fontWeight: 'bold' }}
         >
         <NavLink to="/" id="linkStyle">
           HACKERNEWS
