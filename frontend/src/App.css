@@ -3,8 +3,9 @@ body {
 }
 
 #btn {
-  color: #3d84b8;
+  background-color: #3d84b8;
   border: solid 1px #3d84b8;
+  color: #eeeeee;
 }
 
 #linkStyle {

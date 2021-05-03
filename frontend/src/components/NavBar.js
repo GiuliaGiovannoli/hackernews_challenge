@@ -1,7 +1,9 @@
-import React from 'react';
-import { NavLink } from "react-router-dom"
+import React, { useState, useEffect, useContext } from 'react'
+import { NavLink, useHistory, useParams } from "react-router-dom"
 
 import './styles.css'
+import { LogInStatusContext } from '../context/LogInStatus'
+import { UserInfosContext } from '../context/UserInfos'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -9,6 +11,7 @@ import Button from '@material-ui/core/Button';
 import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
+import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -36,13 +39,15 @@ export default function NavBar() {
     //
   }
 
+  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
+
+  const [userInfos, setUserInfos] = useContext(UserInfosContext)
+
 
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar} style={{ backgroundColor: '#eeeeee' }}>
-      <Button variant="outlined" size="small" id="btn" onClick={handleClick}>
-      Search here   
-      <br></br> 
+      <Button variant="outlined" size="small" id="btn" onClick={() => handleClick()}>
       <SearchIcon />
         </Button>
         <Typography
@@ -58,14 +63,15 @@ export default function NavBar() {
           HACKERNEWS
           </NavLink>
         </Typography>
-        <NavLink to="/access" id="linkStyle">
         <Button variant="outlined" size="small" id="btn">
-          Sign in / Sign up
+          {logInStatus && logInStatus ? 
+            (userInfos && <NavLink to={`/user/${userInfos._id}`} id="linkStyle" style={{ color: '#eeeeee' }}>{userInfos.username}</NavLink>)
+          : 
+          (<NavLink to="/access" id="linkStyle"><PersonOutlineIcon style={{ color: '#eeeeee' }} /></NavLink>)
+          }
         </Button>
-        </NavLink>
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-        
           <Link
             color="inherit"
             noWrap
