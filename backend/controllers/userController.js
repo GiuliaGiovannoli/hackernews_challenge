@@ -5,11 +5,16 @@ const jwt = require('jsonwebtoken')
 
 exports.create_oneUser = async (req, res) => {
   const { username, email, password } = req.body
-  const salt = await bcrypt.genSalt(10)
-  saltedPassword = await bcrypt.hash(password, salt)
-  User.create({ username, email, password: saltedPassword })
-  .then(data => res.json(data))
-  .catch(err => res.status(500).json(err.message))
+  const user = await User.findOne({email, username})
+  if(user) {
+    res.status(401).json({
+      msg: "User already exists"
+  })} else {
+    const salt = await bcrypt.genSalt(10)
+    saltedPassword = await bcrypt.hash(password, salt)
+    User.create({ username, email, password: saltedPassword })
+    .then(data => res.json(data))
+    .catch(err => res.status(500).json(err.message))}
 }
 
 exports.list_allUsers = async (req, res) => {
@@ -28,6 +33,11 @@ exports.find_oneUser = async (req, res) => {
 exports.login_user = async (req, res) => {
   const { email, password } = req.body
   const user = await User.findOne({email})
+  if(!user) {
+    res.status(401).json({
+      msg: "No user found"
+  })
+  } else {
   const matchingPassword = await bcrypt.compare(password, user.password)
   if (matchingPassword) {
     const payload = { user: {
@@ -49,5 +59,5 @@ exports.login_user = async (req, res) => {
         res.status(401).json({
           msg: "Denied"
       })
-      }
+      }}
   }
