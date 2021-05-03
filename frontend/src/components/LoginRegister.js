@@ -61,7 +61,7 @@ export default function LoginRegister() {
 
   const submitRegistration = (e) => {
     e.preventDefault();
-    if (userRegistrering.username !== '' && userRegistrering.email !== '' && userRegistrering.password !== '') {
+    if (userRegistrering.usernameRegistrering !== '' && userRegistrering.emailRegistrering !== '' && userRegistrering.passwordRegistrering !== '') {
       Axios.post('http://localhost:4000/api/users/register', {
         username: userRegistrering.usernameRegistrering,
         email: userRegistrering.emailRegistrering,
@@ -97,10 +97,10 @@ export default function LoginRegister() {
 
   const submitLogIn = (e) => {
     e.preventDefault();
-    if (userLogging.email !== '' && userLogging.password !== '') {
+    if (userLogging.emailLogging !== '' && userLogging.passwordLogging !== '') {
       Axios.post('http://localhost:4000/api/users/login', {
-        email: userLogging.email,
-        password: userLogging.password
+        email: userLogging.emailLogging,
+        password: userLogging.passwordLogging
       }).then((res) => {
         const id = res.data.user._id
         /* window.alert('You are now logged in.') */
@@ -161,7 +161,7 @@ export default function LoginRegister() {
                 fullWidth
                 name="passwordRegistrering"
                 label="Password"
-                type="passwordRegistrering"
+                type="password"
                 id="passwordRegistrering"
                 autoComplete="current-password"
                 onChange={handleOnChangeRegistrering}
@@ -196,10 +196,10 @@ export default function LoginRegister() {
             margin="normal"
             required
             fullWidth
-            id="email"
+            id="emailLogging"
             label="Email Address"
-            name="email"
-            autoComplete="email"
+            name="emailLogging"
+            autoComplete="emailLogging"
             autoFocus
             onChange={handleOnChangeLogging}
           />
@@ -207,10 +207,10 @@ export default function LoginRegister() {
             margin="normal"
             required
             fullWidth
-            name="password"
+            name="passwordLogging"
             label="Password"
             type="password"
-            id="password"
+            id="passwordLogging"
             autoComplete="current-password"
             onChange={handleOnChangeLogging}
           />
