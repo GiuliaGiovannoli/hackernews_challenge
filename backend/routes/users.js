@@ -24,6 +24,6 @@ create_oneUser)
 // router.get('/:id', find_oneUser)
 // router.get('/', list_allUsers)
 
-// maybe update user, get info of user and add in model history of create posts
+// maybe update user, get info of user and add in model history of created posts
 
 module.exports = router;
