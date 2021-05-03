@@ -63,7 +63,7 @@ export default function LoginRegister() {
     <>
     <Container component="main" maxWidth="s" style={{ display: 'flex', justifyContent: 'center', marginTop: '2%' }}>
       <div className={classes.paper}
-      style={{ backgroundColor: '#fcecdd', textAlign: 'center', padding: '1%', borderRadius: '6%', margin: 0 }}>
+      style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '1%', borderRadius: '6%', margin: 0 }}>
         <Typography component="h6" variant="h6">
           Post your article
         </Typography>
@@ -96,7 +96,7 @@ export default function LoginRegister() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            style={{ backgroundColor: '#91091e' }}
+            style={{ backgroundColor: '#3d84b8' }}
             onClick={submitPublish}
           >
             Publish

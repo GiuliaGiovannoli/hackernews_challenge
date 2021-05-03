@@ -11,7 +11,7 @@ const {
   login_user
 } = require('../controllers/UserController')
 
-router.get('/login', login_user)
+router.post('/login', login_user)
 
 router.post('/register', 
 [
@@ -24,5 +24,6 @@ create_oneUser)
 // router.get('/:id', find_oneUser)
 // router.get('/', list_allUsers)
 
+// maybe update user, get info of user and add in model history of create posts
 
 module.exports = router;
