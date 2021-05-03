@@ -1,7 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 import Axios from 'axios'
 
 import './styles.css'
+
+import { LogInStatusContext } from '../context/LogInStatus'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -38,6 +41,10 @@ export default function LoginRegister() {
 
   const classes = useStyles();
 
+  const history = useHistory()
+
+  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext);
+
   //REGISTRATION
   const [userRegistrering, setUserRegistrering] = useState({
     usernameRegistrering: "",
@@ -56,13 +63,18 @@ export default function LoginRegister() {
     e.preventDefault();
     if (userRegistrering.username !== '' && userRegistrering.email !== '' && userRegistrering.password !== '') {
       Axios.post('http://localhost:4000/api/users/register', {
-        username: userRegistrering.username,
-        email: userRegistrering.email,
-        password: userRegistrering.password
+        username: userRegistrering.usernameRegistrering,
+        email: userRegistrering.emailRegistrering,
+        password: userRegistrering.passwordRegistrering
       }).then((res) => {
         window.alert('You may now log in.')
         // you should empty the inputs !!
-        // case for username or email already existing ?! ?! 
+      })
+      .catch((err) => {
+        if(err) {
+          window.alert('User already exists.')
+          // you should empty the inputs !!
+        }
       })
     }
     else {
@@ -90,12 +102,17 @@ export default function LoginRegister() {
         email: userLogging.email,
         password: userLogging.password
       }).then((res) => {
-        console.log(res.data)
-        window.alert('You are now logged in.')
-        // it should open the dashboard user page !! 
+        const id = res.data.user._id
+        /* window.alert('You are now logged in.') */
+        history.push(`/user/${id}`)
+        setLogInStatus(true)
       })
-    }
-    else {
+      .catch((err) => {
+        if(err) {
+          window.alert('Wrong credentials.')}
+          // you should empty the inputs !!
+      })
+    } else {
       window.alert('Please fill all forms.')
     }
   }
