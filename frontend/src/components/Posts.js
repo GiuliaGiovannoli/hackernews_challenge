@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react'
+import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 
 import CreatePost from './CreatePost'
+import { LogInStatusContext } from '../context/LogInStatus'
+import { UserInfosContext } from '../context/UserInfos'
 
 import { makeStyles } from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
@@ -32,12 +35,17 @@ export default function Posts() {
 
   const classes = useStyles();
 
+  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
+
+  const [userInfos, setUserInfos] = useContext(UserInfosContext)
+
 
   return (
     <>
 
-    {/* add condition here */}
-    <CreatePost />
+    { logInStatus && logInStatus ? 
+    <CreatePost /> : null
+    }
 
     <div style={{ display: 'flex', margin: '2% 15%', flexDirection:'column' }}>
     <Card className={classes.root} 
