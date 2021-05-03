@@ -24,10 +24,16 @@ exports.list_allUsers = async (req, res) => {
 }
 
 exports.find_oneUser = async (req, res) => {
-  const id = req.params.id
-  User.findById(id)
+  const idTarget = req.params.id
+  const user = User.findById(idTarget)
+  if(!user) {
+    res.status(401).json({
+      msg: "No user found"
+  })
+  } else {
+  user
   .then(data => res.json(data))
-  .catch(err => res.status(500).json(err.message))
+  .catch(err => res.status(500).json(err.message))}
 }
 
 exports.login_user = async (req, res) => {

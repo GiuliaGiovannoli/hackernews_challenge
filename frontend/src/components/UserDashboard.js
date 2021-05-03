@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 
 import './styles.css'
+
+import { LogInStatusContext } from '../context/LogInStatus'
+import { UserInfosContext } from '../context/UserInfos'
 
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,6 +14,13 @@ import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import Button from '@material-ui/core/Button';
+import Table from '@material-ui/core/Table';
+import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
+import TableContainer from '@material-ui/core/TableContainer';
+import TableHead from '@material-ui/core/TableHead';
+import TableRow from '@material-ui/core/TableRow';
+import Paper from '@material-ui/core/Paper';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -49,6 +60,9 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
+  table: {
+    minWidth: 650,
+  },
 }));
 
 
@@ -60,13 +74,26 @@ export default function UserDashboard() {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  
+
+  const history = useHistory()
+
+  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
+
+  const [userInfos, setUserInfos] = useContext(UserInfosContext)
+
+  function handleLogOut() {
+    setLogInStatus(false)
+    history.push('/access')
+    setUserInfos()
+  }
+
 
   return (
     <div className={classes.root}>
-    <Button id="btn" style={{ float: 'right', margin: '2%' }}>
+    {logInStatus && 
+    <Button id="btn" style={{ float: 'right', margin: '2%' }} onClick={() => handleLogOut()}>
       Log out
-    </Button>
+    </Button>}
       <AppBar position="static" style={{ backgroundColor: '#3d84b8', marginTop: '2%'  }}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Profile" {...a11yProps(0)} />
@@ -75,14 +102,56 @@ export default function UserDashboard() {
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
-        Profile
+      {userInfos && 
+      <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+          <TableRow>
+            <TableCell>Username:  </TableCell>
+            <TableCell>{userInfos.username}  </TableCell>
+            <TableCell>Icon  </TableCell>
+          </TableRow>
+          <TableRow>
+            <TableCell>Email:  </TableCell>
+            <TableCell>{userInfos.email}  </TableCell>
+            <TableCell>Icon  </TableCell>
+          </TableRow>
+        </TableHead>
+        </Table>
+    </TableContainer>}
       </TabPanel>
       <TabPanel value={value} index={1}>
-      Posts published
+      <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+      {userInfos && userInfos.posts_liked.map((one) => {
+        <TableRow>
+            <TableCell>Title:  </TableCell>
+            <TableCell>some title  </TableCell>
+            <TableCell>Icon  </TableCell>
+          </TableRow>
+      })}
+      </TableHead>
+        </Table>
+    </TableContainer>
       </TabPanel>
       <TabPanel value={value} index={2}>
-      Posts liked
-      </TabPanel>
+      <TableContainer component={Paper}>
+      <Table className={classes.table} aria-label="simple table">
+        <TableHead>
+      {userInfos && userInfos.posts_liked.map((one) => {
+        <TableRow>
+            <TableCell>Title:  </TableCell>
+            <TableCell>some title  </TableCell>
+            <TableCell>Icon  </TableCell>
+          </TableRow>
+      })}
+      </TableHead>
+        </Table>
+    </TableContainer>
+      </TabPanel> 
     </div>
   );
 }
+
+

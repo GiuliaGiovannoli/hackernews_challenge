@@ -5,6 +5,7 @@ import Axios from 'axios'
 import './styles.css'
 
 import { LogInStatusContext } from '../context/LogInStatus'
+import { UserInfosContext } from '../context/UserInfos'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -43,7 +44,9 @@ export default function LoginRegister() {
 
   const history = useHistory()
 
-  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext);
+  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
+
+  const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
   //REGISTRATION
   const [userRegistrering, setUserRegistrering] = useState({
@@ -96,7 +99,7 @@ export default function LoginRegister() {
   }
 
   const submitLogIn = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (userLogging.emailLogging !== '' && userLogging.passwordLogging !== '') {
       Axios.post('http://localhost:4000/api/users/login', {
         email: userLogging.emailLogging,
@@ -106,6 +109,7 @@ export default function LoginRegister() {
         /* window.alert('You are now logged in.') */
         history.push(`/user/${id}`)
         setLogInStatus(true)
+        setUserInfos(res.data.user)
       })
       .catch((err) => {
         if(err) {

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react'
 import { BrowserRouter as Router, Switch, Route, NavLink, Link, Redirect } from "react-router-dom"
 
 import { LogInStatusProvider } from './context/LogInStatus'
+import {  UserInfosProvider } from './context/UserInfos'
 
 import LoginRegister from './components/LoginRegister'
 import NavBar from './components/NavBar'
@@ -16,7 +17,7 @@ function App() {
     <>
     <Router>
     <LogInStatusProvider>
-    {/* UseContext for storingLikes ?? !! */}
+    <UserInfosProvider>
     <NavBar />
     <Switch>
     <Route exact path="/" component={Posts} />
@@ -26,6 +27,7 @@ function App() {
     <Redirect to="/" />
     </Switch>
     <Footer />
+    </UserInfosProvider>
     </LogInStatusProvider>
     </Router>
   </>
