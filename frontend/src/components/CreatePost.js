@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react'
+import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 import Axios from 'axios'
 
 import './styles.css'
+import { UserInfosContext } from '../context/UserInfos'
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -34,6 +36,8 @@ const useStyles = makeStyles((theme) => ({
 export default function LoginRegister() {
 
   const classes = useStyles();
+
+  const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
   const [user, setUser] = useState({
     username: "",
