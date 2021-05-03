@@ -17,6 +17,14 @@ body {
   width: 40%;
 }
 
+.grey {
+  color: rgba(0, 0, 0, 0.54);
+}
+
+.blue {
+  color: #3d84b8;
+}
+
 @media only screen and (max-width: 750px) {
   #column {
     flex-direction: column;

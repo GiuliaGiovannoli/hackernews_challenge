@@ -11,6 +11,7 @@ import TextField from '@material-ui/core/TextField';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import CheckBoxOutlinedIcon from '@material-ui/icons/CheckBoxOutlined';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -39,25 +40,51 @@ export default function LoginRegister() {
 
   const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
-  const [user, setUser] = useState({
-    username: "",
-    email: "",
-    password: ""
+  const [post, setPost] = useState({
+    title: '',
+    link: '',
+    about: '',
+    author: userInfos.username,
+    category: []
   })
 
   const handleOnChange = (e) => {
-    setUser({
-      ...user,
+    setPost({
+      ...post,
       [e.target.name]: e.target.value
+    })
+  }
+
+  const handleOnChecked = (categoryName) => {
+    console.log(categoryName)
+    setPost({
+      ...post,
+      category: categoryName
     })
   }
 
   const submitPublish = (e) => {
     e.preventDefault();
-    if (user.username !== '' && user.email !== '' && user.password !== '') {
-      //
-    }
-    else {
+    if (post.title !== '' && post.link !== '' && post.about !== '') {
+
+      //missing token!!!
+      
+        Axios.post('http://localhost:4000/api/posts', {
+        title: post.title,
+        link: post.link,
+        author: post.author,
+        about: post.about,
+        category: post.category
+      }).then((res) => {
+        console.log(res)
+        // you should empty the inputs !!
+      })
+      .catch((err) => {
+        if(err) {
+          window.alert('Post already exists.')
+          // you should empty the inputs !!
+        }
+      })} else {
       window.alert('Please fill all forms.')
     }
   }
@@ -67,7 +94,7 @@ export default function LoginRegister() {
     <>
     <Container component="main" maxWidth="s" style={{ display: 'flex', justifyContent: 'center', marginTop: '2%' }}>
       <div className={classes.paper}
-      style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '1%', borderRadius: '6%', margin: 0 }}>
+      style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '1%', borderRadius: '2%', margin: 0, width: '60%' }}>
         <Typography component="h6" variant="h6">
           Post your article
         </Typography>
@@ -94,6 +121,25 @@ export default function LoginRegister() {
             autoComplete="link"
             onChange={handleOnChange}
           />
+              <div>
+              <p>Choose the correct category</p>
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('attacks') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber attacks')}/>Cyber attacks   <br></br>
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('security') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber security')}/>Cyber security   <br></br>
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('breaches') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Data breaches')}/>Data breaches   <br></br>
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Vulnerabilities') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Vulnerabilities')}/>Vulnerabilities   <br></br>
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Malware') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Malware')}/>Malware   <br></br>
+    </div>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="about"
+            label="About"
+            name="about"
+            autoComplete="about"
+            autoFocus
+            onChange={handleOnChange}
+          />
           <Button
             type="submit"
             fullWidth
@@ -113,3 +159,7 @@ export default function LoginRegister() {
     </>
   );
 }
+
+
+
+
