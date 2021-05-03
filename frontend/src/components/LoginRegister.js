@@ -110,6 +110,12 @@ export default function LoginRegister() {
         history.push(`/user/${id}`)
         setLogInStatus(true)
         setUserInfos(res.data.user)
+        setUserInfos({
+          username: res.data.user.username,
+          email: res.data.user.email,
+          posts_liked: res.data.user.posts_liked,
+          token: res.data.token
+        })
       })
       .catch((err) => {
         if(err) {
