@@ -61,22 +61,59 @@ export default function Posts() {
       setListOfPosts(filteringPosts)}
   }, [category, posts])
 
+
   function handleLikes(post) {
+    // step 1: if user likes a post  
+    if(userInfos && !userInfos.posts_liked.includes(post._id)) {
     const likesNumber = {
-      tot_likes: post && post.tot_likes + 1 }
+    tot_likes: post && post.tot_likes + 1 }
     Axios.put(`http://localhost:4000/api/posts/likes/${post && post._id}`, likesNumber)
       .then((res) => {
         let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === post._id) { return {
           ...anyPost, tot_likes: anyPost.tot_likes +1
         }} else return anyPost})
         setListOfPosts(updatingList)
-        setUserInfos({...userInfos, posts_liked: [...userInfos.posts_liked, post._id]})
-  }).catch((err) => {
-  if(err) {
-    console.log(err)
-  }})
-}
-console.log(userInfos && userInfos)
+      }).catch((err) => {
+        if(err) {
+          console.log(err)}})
+        //UPDATING USER INFOS
+        if(userInfos && userInfos.token) {
+          const config = {headers: {'x-auth-token': `${userInfos.token}` }}
+        Axios.put(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, 
+        {posts_liked: [...userInfos.posts_liked, post._id]}, config )
+        .then((res) => {
+          setUserInfos({...userInfos, posts_liked: [...userInfos.posts_liked, post._id]})
+        }).catch((err) => {
+          if(err) {
+            console.log(err)}})}
+        } 
+        // step 2 if the user dislike a post
+        else if (userInfos && userInfos.posts_liked.includes(post._id)) {
+          const likesNumber = {
+          tot_likes: post && post.tot_likes + 1 }
+          Axios.put(`http://localhost:4000/api/posts/likes/${post && post._id}`, likesNumber)
+            .then((res) => {
+              let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === post._id) { return {
+                ...anyPost, tot_likes: anyPost.tot_likes -1
+              }} else return anyPost})
+              setListOfPosts(updatingList)
+            }).catch((err) => {
+              if(err) {
+                console.log(err)}})
+              //UPDATING USER INFOS
+              if(userInfos && userInfos.token) {
+                const config = {headers: {'x-auth-token': `${userInfos.token}` }}
+                let updatingList = userInfos && userInfos.posts_liked.filter((anyPost) => {return anyPost !== post._id})
+                Axios.put(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, 
+                {posts_liked: updatingList}, config )
+                .then((res) => {
+                setUserInfos({...userInfos, posts_liked: updatingList})
+                }).catch((err) => {
+                if(err) {
+                  console.log(err)}})}
+                } 
+  }
+
 
   return (
     <>

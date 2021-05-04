@@ -36,6 +36,20 @@ exports.find_oneUser = async (req, res) => {
   .catch(err => res.status(500).json(err.message))}
 }
 
+exports.update_user = async (req, res) => {
+  //no for password! only for the rest of the user model
+  const idTarget = req.params.id
+  const user = await User.findById(idTarget)
+  if(!user) {
+    res.status(401).json({
+      msg: "No user found"
+  })
+  } else {
+  User.findOneAndUpdate({ _id: idTarget }, { ...req.body }, { new: true })
+  .then(data => res.json(data))
+  .catch(err => res.status(500).json(err.message))}
+}
+
 exports.login_user = async (req, res) => {
   const { email, password } = req.body
   const user = await User.findOne({email})

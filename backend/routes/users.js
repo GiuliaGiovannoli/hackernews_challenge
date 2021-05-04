@@ -8,7 +8,8 @@ const {
   create_oneUser,
   list_allUsers,
   find_oneUser,
-  login_user
+  login_user,
+  update_user
 } = require('../controllers/UserController')
 
 router.post('/login', login_user)
@@ -21,9 +22,11 @@ router.post('/register',
 ],
 create_oneUser)
 
+router.put('/:id', authenticatingUser, update_user)
+
 // router.get('/:id', find_oneUser)
 // router.get('/', list_allUsers)
 
-// maybe update user, add in model history of created posts
+// add in model history of created posts
 
 module.exports = router;
