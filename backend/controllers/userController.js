@@ -52,7 +52,7 @@ exports.update_user = async (req, res) => {
 
 exports.login_user = async (req, res) => {
   const { email, password } = req.body
-  const user = await User.findOne({email})
+  const user = await User.findOne({email}).populate('posts_liked')
   if(!user) {
     res.status(401).json({
       msg: "No user found"
