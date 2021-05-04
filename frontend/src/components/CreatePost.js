@@ -65,7 +65,7 @@ export default function LoginRegister() {
 
   const submitPublish = (e) => {
     e.preventDefault();
-    if (post.title !== '' && post.link !== '' && post.about !== '') {
+    if (post.title !== '' && post.link !== '' && post.about !== '' && post.category !== '') {
       if(userInfos && userInfos.token) {
         const config = {headers: {'x-auth-token': `${userInfos.token}` }}
         const newPost = {
