@@ -64,33 +64,30 @@ export default function Posts() {
 
   function handleLikes(post) {
     // step 1: if user likes a post  
-    if(userInfos && !userInfos.posts_liked.includes(post._id)) {
-    const likesNumber = {
-    tot_likes: post && post.tot_likes + 1 }
-    Axios.put(`http://localhost:4000/api/posts/likes/${post && post._id}`, likesNumber)
+    const checkPostsLiked = userInfos && userInfos.posts_liked.find((anyPost) => anyPost._id === post._id)
+    if(!checkPostsLiked) {
+    const likesNumber = { tot_likes: post && post.tot_likes + 1 }
+    Axios.put(`http://localhost:4000/api/posts/likes/${post._id}`, likesNumber)
       .then((res) => {
         let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === post._id) { return {
           ...anyPost, tot_likes: anyPost.tot_likes +1
         }} else return anyPost})
         setListOfPosts(updatingList)
       }).catch((err) => {
-        if(err) {
-          console.log(err)}})
+        if(err) {console.log(err)}})
         //UPDATING USER INFOS
         if(userInfos && userInfos.token) {
-          const config = {headers: {'x-auth-token': `${userInfos.token}` }}
+          const config = {headers: {'x-auth-token': `${userInfos && userInfos.token}` }}
         Axios.put(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, 
-        {posts_liked: [...userInfos.posts_liked, post._id]}, config )
+        {posts_liked: [...userInfos && userInfos.posts_liked, post]}, config )
         .then((res) => {
-          setUserInfos({...userInfos, posts_liked: [...userInfos.posts_liked, post._id]})
+          setUserInfos({...userInfos && userInfos, posts_liked: [...userInfos && userInfos.posts_liked, post]})
         }).catch((err) => {
-          if(err) {
-            console.log(err)}})}
+          if(err) {console.log(err)}})}
         } 
         // step 2 if the user dislike a post
-        else if (userInfos && userInfos.posts_liked.includes(post._id)) {
-          const likesNumber = {
-          tot_likes: post && post.tot_likes + 1 }
+        else if (checkPostsLiked) {
+          const likesNumber = { tot_likes: post && post.tot_likes - 1 }
           Axios.put(`http://localhost:4000/api/posts/likes/${post && post._id}`, likesNumber)
             .then((res) => {
               let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === post._id) { return {
@@ -98,19 +95,17 @@ export default function Posts() {
               }} else return anyPost})
               setListOfPosts(updatingList)
             }).catch((err) => {
-              if(err) {
-                console.log(err)}})
+              if(err) {console.log(err)}})
               //UPDATING USER INFOS
               if(userInfos && userInfos.token) {
-                const config = {headers: {'x-auth-token': `${userInfos.token}` }}
-                let updatingList = userInfos && userInfos.posts_liked.filter((anyPost) => {return anyPost !== post._id})
+                const config = {headers: {'x-auth-token': `${userInfos && userInfos.token}` }}
+                let updatingList = userInfos && userInfos.posts_liked.filter((anyPost) => {return anyPost._id !== post._id})
                 Axios.put(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, 
                 {posts_liked: updatingList}, config )
                 .then((res) => {
                 setUserInfos({...userInfos, posts_liked: updatingList})
                 }).catch((err) => {
-                if(err) {
-                  console.log(err)}})}
+                if(err) {console.log(err)}})}
                 } 
   }
 
@@ -144,8 +139,12 @@ export default function Posts() {
       <CardActions style={{ display: 'flex', justifyContent: 'center', padding: 0 }}>
         <Button size="small" id="btn" target='blank' href={`${one && one.link}`}>Read here</Button>
         { logInStatus && logInStatus ? 
+
+        //check it again !!
+        
         <ThumbUpAltOutlinedIcon style={{ marginLeft: '10%' }} fontSize="large" 
-        className={ userInfos && userInfos.posts_liked.includes(one && one._id) ? 'blue' : 'grey' } onClick={() => handleLikes(one && one)} />
+        onClick={() =>{ handleLikes(one)}} 
+        className={ userInfos.posts_liked.find(element => element._id === one._id) ? 'blue' : 'grey' } />
         : <p style={{ color: 'rgba(0, 0, 0, 0.54)' }}>likes:</p>
         }
         <p style={{ color: 'rgba(0, 0, 0, 0.54)' }}>{one && one.tot_likes}</p>

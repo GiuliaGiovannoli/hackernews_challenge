@@ -22,7 +22,7 @@ body {
 }
 
 .blue {
-  color: #3d84b8;
+  color: #3d84b8 !important;
 }
 
 @media only screen and (max-width: 750px) {

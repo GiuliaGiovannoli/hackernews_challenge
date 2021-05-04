@@ -122,11 +122,12 @@ export default function UserDashboard() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
       {userInfos && userInfos.posts_liked.map((one) => {
+        return (
         <TableRow>
             <TableCell>Title:  </TableCell>
             <TableCell>some title  </TableCell>
-            <TableCell>Icon  </TableCell>
-          </TableRow>
+            <TableCell></TableCell>
+          </TableRow>)
       })}
       </TableHead>
         </Table>
@@ -137,11 +138,12 @@ export default function UserDashboard() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
       {userInfos && userInfos.posts_liked.map((one) => {
+        return (
         <TableRow>
             <TableCell>Title:  </TableCell>
-            <TableCell>some title  </TableCell>
-            <TableCell>Icon  </TableCell>
-          </TableRow>
+            <TableCell>{one.title}  </TableCell>
+            <TableCell><a id="linkStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
+          </TableRow>)
       })}
       </TableHead>
         </Table>
