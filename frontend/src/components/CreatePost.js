@@ -44,7 +44,7 @@ export default function LoginRegister() {
     link: '',
     about: '',
     author: userInfos && userInfos._id,
-    category: []
+    category: ''
   })
 
   const [listOfPosts, setListOfPosts] = useContext(ListOfPostsContext)
@@ -64,21 +64,21 @@ export default function LoginRegister() {
   }
 
   const submitPublish = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     if (post.title !== '' && post.link !== '' && post.about !== '' && post.category !== '') {
       if(userInfos && userInfos.token) {
-        const config = {headers: {'x-auth-token': `${userInfos.token}` }}
+        const config = {headers: {'x-auth-token': `${userInfos && userInfos.token}` }}
         const newPost = {
-          title: post.title,
-          link: post.link,
-          author: post.author,
-          about: post.about,
-          category: post.category }
+          title: post && post.title,
+          link: post && post.link,
+          author: post && post.author,
+          about: post && post.about,
+          category: post && post.category }
         Axios.post("http://localhost:4000/api/posts", 
         newPost, config)
-      .then((res) => {
+        .then((res) => {
         setListOfPosts([
-          post,
+          newPost && newPost,
           ...listOfPosts
         ])
         // you should empty the inputs !!
@@ -87,8 +87,8 @@ export default function LoginRegister() {
           console.log(err)
           window.alert('Post already exists.')
           // you should empty the inputs !! 
-        }
-      })}} else {
+        }})
+    }} else {
       window.alert('Please fill all forms.')}
   }
 
@@ -126,9 +126,9 @@ export default function LoginRegister() {
           />
               <div>
               <p>Choose the correct category</p>
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('attacks') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber attacks')}/>Cyber attacks   
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('security') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber security')}/>Cyber security   
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('breaches') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Data breaches')}/>Data breaches   
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Cyber attacks') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber attacks')}/>Cyber attacks   
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Cyber security') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber security')}/>Cyber security   
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Data breaches') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Data breaches')}/>Data breaches   
       <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Vulnerabilities') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Vulnerabilities')}/>Vulnerabilities   
       <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Malware') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Malware')}/>Malware   
     </div>

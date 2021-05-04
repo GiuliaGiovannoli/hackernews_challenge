@@ -113,6 +113,7 @@ export default function LoginRegister() {
           username: res.data.user.username,
           email: res.data.user.email,
           posts_liked: res.data.user.posts_liked,
+          posts_created: res.data.user.posts_created,
           token: res.data.token
         })
       })
