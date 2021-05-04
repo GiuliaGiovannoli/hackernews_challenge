@@ -66,7 +66,7 @@ export default function Posts() {
     // step 1: if user likes a post  
     const checkPostsLiked = userInfos && userInfos.posts_liked.find((anyPost) => anyPost._id === post._id)
     if(!checkPostsLiked) {
-    const likesNumber = { tot_likes: post && post.tot_likes + 1 }
+    const likesNumber = { tot_likes: post.tot_likes + 1 }
     Axios.put(`http://localhost:4000/api/posts/likes/${post._id}`, likesNumber)
       .then((res) => {
         let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === post._id) { return {
@@ -87,7 +87,7 @@ export default function Posts() {
         } 
         // step 2 if the user dislike a post
         else if (checkPostsLiked) {
-          const likesNumber = { tot_likes: post && post.tot_likes - 1 }
+          const likesNumber = { tot_likes: post.tot_likes - 1 }
           Axios.put(`http://localhost:4000/api/posts/likes/${post && post._id}`, likesNumber)
             .then((res) => {
               let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === post._id) { return {
@@ -108,7 +108,7 @@ export default function Posts() {
                 if(err) {console.log(err)}})}
                 } 
   }
-
+  
 
   return (
     <>
@@ -141,7 +141,7 @@ export default function Posts() {
         { logInStatus && logInStatus ? 
 
         //check it again !!
-        
+
         <ThumbUpAltOutlinedIcon style={{ marginLeft: '10%' }} fontSize="large" 
         onClick={() =>{ handleLikes(one)}} 
         className={ userInfos.posts_liked.find(element => element._id === one._id) ? 'blue' : 'grey' } />

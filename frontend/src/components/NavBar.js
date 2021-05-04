@@ -70,15 +70,15 @@ export default function NavBar() {
         }
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-          <NavLink to="Cyber attacks" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Cyber attacks" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Cyber attacks </Link></NavLink>
-          <NavLink to="Cyber security" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Cyber security" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Cyber security </Link></NavLink>
-          <NavLink to="Data breaches" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Data breaches" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Data breaches </Link></NavLink>
-          <NavLink to="Vulnerabilities" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Vulnerabilities" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Vulnerabilities </Link></NavLink>
-          <NavLink to="Malware" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Malware" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Malware </Link></NavLink>
       </Toolbar>
     </React.Fragment>
