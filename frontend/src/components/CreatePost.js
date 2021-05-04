@@ -44,7 +44,7 @@ export default function LoginRegister() {
     title: '',
     link: '',
     about: '',
-    author: userInfos.username,
+    author: userInfos._id,
     category: []
   })
 
@@ -56,7 +56,6 @@ export default function LoginRegister() {
   }
 
   const handleOnChecked = (categoryName) => {
-    console.log(categoryName)
     setPost({
       ...post,
       category: categoryName
@@ -66,25 +65,29 @@ export default function LoginRegister() {
   const submitPublish = (e) => {
     e.preventDefault();
     if (post.title !== '' && post.link !== '' && post.about !== '') {
-
-      //missing token!!!
-      
-        Axios.post('http://localhost:4000/api/posts', {
-        title: post.title,
-        link: post.link,
-        author: post.author,
-        about: post.about,
-        category: post.category
-      }).then((res) => {
+      if(userInfos && userInfos.token) {
+        const config = {headers: {'x-auth-token': `${userInfos.token}` }}
+        const newPost = {
+          title: post.title,
+          link: post.link,
+          author: post.author,
+          about: post.about,
+          category: post.category
+        }
+        Axios.post("http://localhost:4000/api/posts", 
+        newPost, config
+        )
+      .then((res) => {
         console.log(res)
         // you should empty the inputs !!
       })
       .catch((err) => {
         if(err) {
+          console.log(err)
           window.alert('Post already exists.')
           // you should empty the inputs !!
         }
-      })} else {
+      })}} else {
       window.alert('Please fill all forms.')
     }
   }

@@ -111,6 +111,7 @@ export default function LoginRegister() {
         setLogInStatus(true)
         setUserInfos(res.data.user)
         setUserInfos({
+          _id: res.data.user._id,
           username: res.data.user.username,
           email: res.data.user.email,
           posts_liked: res.data.user.posts_liked,
