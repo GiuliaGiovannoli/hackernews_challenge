@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Axios from 'axios'
 
-import './styles.css'
 import { UserInfosContext } from '../context/UserInfos'
 import { ListOfPostsContext } from '../context/ListOfPosts'
 
@@ -127,11 +126,11 @@ export default function LoginRegister() {
           />
               <div>
               <p>Choose the correct category</p>
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('attacks') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber attacks')}/>Cyber attacks   <br></br>
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('security') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber security')}/>Cyber security   <br></br>
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('breaches') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Data breaches')}/>Data breaches   <br></br>
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Vulnerabilities') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Vulnerabilities')}/>Vulnerabilities   <br></br>
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Malware') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Malware')}/>Malware   <br></br>
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('attacks') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber attacks')}/>Cyber attacks   
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('security') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber security')}/>Cyber security   
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('breaches') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Data breaches')}/>Data breaches   
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Vulnerabilities') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Vulnerabilities')}/>Vulnerabilities   
+      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Malware') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Malware')}/>Malware   
     </div>
           <TextField
             margin="normal"
