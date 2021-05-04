@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
-import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 import Axios from 'axios'
 
 import './styles.css'
 import { UserInfosContext } from '../context/UserInfos'
+import { ListOfPostsContext } from '../context/ListOfPosts'
 
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -44,9 +44,11 @@ export default function LoginRegister() {
     title: '',
     link: '',
     about: '',
-    author: userInfos._id,
+    author: userInfos && userInfos._id,
     category: []
   })
+
+  const [listOfPosts, setListOfPosts] = useContext(ListOfPostsContext)
 
   const handleOnChange = (e) => {
     setPost({
@@ -72,24 +74,23 @@ export default function LoginRegister() {
           link: post.link,
           author: post.author,
           about: post.about,
-          category: post.category
-        }
+          category: post.category }
         Axios.post("http://localhost:4000/api/posts", 
-        newPost, config
-        )
+        newPost, config)
       .then((res) => {
-        console.log(res)
+        setListOfPosts([
+          post,
+          ...listOfPosts
+        ])
         // you should empty the inputs !!
-      })
-      .catch((err) => {
+      }).catch((err) => {
         if(err) {
           console.log(err)
           window.alert('Post already exists.')
-          // you should empty the inputs !!
+          // you should empty the inputs !! 
         }
       })}} else {
-      window.alert('Please fill all forms.')
-    }
+      window.alert('Please fill all forms.')}
   }
 
 

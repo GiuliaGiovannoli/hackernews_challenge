@@ -82,7 +82,7 @@ export default function UserDashboard() {
 
   function handleLogOut() {
     setLogInStatus(false)
-    history.push('/access')
+    history.push('/access/users')
     setUserInfos()
   }
 

@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, NavLink, Link, Redirect } from 
 
 import { LogInStatusProvider } from './context/LogInStatus'
 import {  UserInfosProvider } from './context/UserInfos'
+import {  ListOfPostsProvider } from './context/ListOfPosts'
 
 import LoginRegister from './components/LoginRegister'
 import NavBar from './components/NavBar'
@@ -18,15 +19,18 @@ function App() {
     <Router>
     <LogInStatusProvider>
     <UserInfosProvider>
+    <ListOfPostsProvider>
     <NavBar />
     <Switch>
     <Route exact path="/" component={Posts} />
-    <Route exact path="/access" component={LoginRegister} />
-    <Route exact path="/user/:id" component={UserDashboard} />
+    <Route exact path="/:category" component={Posts} />
+    <Route exact path="/access/users" component={LoginRegister} />
+    <Route exact path="/access/user/:id" component={UserDashboard} />
     {/*<PrivateRoute exact path='/user/:id' component={UserDashboard} maybe?? !! />*/}
     <Redirect to="/" />
     </Switch>
     <Footer />
+    </ListOfPostsProvider>
     </UserInfosProvider>
     </LogInStatusProvider>
     </Router>

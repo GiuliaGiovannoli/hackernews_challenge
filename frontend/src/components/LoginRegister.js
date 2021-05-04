@@ -107,7 +107,7 @@ export default function LoginRegister() {
       }).then((res) => {
         const id = res.data.user._id
         /* window.alert('You are now logged in.') */
-        history.push(`/user/${id}`)
+        history.push(`/access/user/${id}`)
         setLogInStatus(true)
         setUserInfos(res.data.user)
         setUserInfos({

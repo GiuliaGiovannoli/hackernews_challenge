@@ -13,7 +13,7 @@ exports.create_onePost = async (req, res) => {
 }
 
 exports.list_allPosts = async (req, res) => {
-  Post.find()
+  Post.find().populate('author')
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err.message))
 }

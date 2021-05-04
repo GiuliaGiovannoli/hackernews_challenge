@@ -63,26 +63,24 @@ export default function NavBar() {
           HACKERNEWS
           </NavLink>
         </Typography>
+        {<NavLink to={logInStatus && logInStatus ?  `access/user/${userInfos && userInfos._id}` : '/access/users'} id="linkStyle" style={{ color: '#eeeeee' }}>
         <Button variant="outlined" size="small" id="btn">
-          {logInStatus && logInStatus ? 
-            (userInfos && <NavLink to={`/user/${userInfos._id}`} id="linkStyle" style={{ color: '#eeeeee' }}>{userInfos.username}</NavLink>)
-          : 
-          (<NavLink to="/access" id="linkStyle"><PersonOutlineIcon style={{ color: '#eeeeee' }} /></NavLink>)
-          }
+        {logInStatus && logInStatus ? `${userInfos && userInfos.username}` : <PersonOutlineIcon style={{ color: '#eeeeee', backgroundColor: '#3d84b8' }}/> }
         </Button>
+        </NavLink>
+        }
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-          <Link
-            color="inherit"
-            noWrap
-            variant="body2"
-            // href={section.url}
-            className={classes.toolbarLink}
-          >
-          some links 
-          // maybe
-          </Link>
-        
+          <NavLink to="Cyber attacks" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          Cyber attacks </Link></NavLink>
+          <NavLink to="Cyber security" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          Cyber security </Link></NavLink>
+          <NavLink to="Data breaches" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          Data breaches </Link></NavLink>
+          <NavLink to="Vulnerabilities" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          Vulnerabilities </Link></NavLink>
+          <NavLink to="Malware" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          Malware </Link></NavLink>
       </Toolbar>
     </React.Fragment>
   );
