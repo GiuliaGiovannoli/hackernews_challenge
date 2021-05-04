@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from 'react';
 import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 import Axios from 'axios'
 
-import './styles.css'
-
 import { LogInStatusContext } from '../context/LogInStatus'
 import { UserInfosContext } from '../context/UserInfos'
 

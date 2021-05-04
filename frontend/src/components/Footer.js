@@ -1,6 +1,5 @@
 import React from "react";
 
-import './styles.css'
 import Button from '@material-ui/core/Button';
 import FacebookIcon from '@material-ui/icons/Facebook';
 import TwitterIcon from '@material-ui/icons/Twitter';

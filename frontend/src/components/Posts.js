@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { NavLink, Link, useHistory, useParams } from "react-router-dom"
+import Axios from 'axios'
 
 import CreatePost from './CreatePost'
+import { UserInfosContext } from '../context/UserInfos'
 import { LogInStatusContext } from '../context/LogInStatus'
 import { ListOfPostsContext } from '../context/ListOfPosts'
 
@@ -22,11 +24,11 @@ const useStyles = makeStyles({
     margin: '0 2px',
     transform: 'scale(0.8)',
   },
-  title: {
-    fontSize: 14,
-  },
   pos: {
     marginBottom: 12,
+  },
+  title: {
+    fontSize: 14,
   },
 });
 
@@ -36,6 +38,8 @@ export default function Posts() {
   const classes = useStyles();
 
   const { category } = useParams()
+
+  const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
   const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
@@ -57,8 +61,22 @@ export default function Posts() {
       setListOfPosts(filteringPosts)}
   }, [category, posts])
 
-//console.log(posts)
-
+  function handleLikes(post) {
+    const likesNumber = {
+      tot_likes: post && post.tot_likes + 1 }
+    Axios.put(`http://localhost:4000/api/posts/likes/${post && post._id}`, likesNumber)
+      .then((res) => {
+        let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === post._id) { return {
+          ...anyPost, tot_likes: anyPost.tot_likes +1
+        }} else return anyPost})
+        setListOfPosts(updatingList)
+        setUserInfos({...userInfos, posts_liked: [...userInfos.posts_liked, post._id]})
+  }).catch((err) => {
+  if(err) {
+    console.log(err)
+  }})
+}
+console.log(userInfos && userInfos)
 
   return (
     <>
@@ -72,25 +90,28 @@ export default function Posts() {
       return(
 
         <Card className={classes.root} 
-    style={{ textAlign: 'center', boxShadow: '0px none', marginBottom: '2%', border: '1px solid #eeeeee' }}>
-      <CardContent style={{ padding: '2%' }}>
-        <Typography className={classes.title} color="textPrimary" 
-        style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>
-          {one.title}
+    style={{ textAlign: 'center', boxShadow: '0px 0px 0px 0px', marginBottom: '2%', border: '1px solid #eeeeee', padding: '0.5%' }}>
+      <CardContent style={{ padding: 0 }}>
+        <Typography className={classes.title} color="textPrimary" style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>
+          {one && one.title}
         </Typography>
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>
-          {one.category[0]} 
+          {one && one.category[0]} 
           <br></br>
-          Posted by {one.author.username}
+          Posted by {one && one.author.username}
         </Typography>
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>
-          About: {one.about}
+          About: {one && one.about}
         </Typography>
       </CardContent>
-      <CardActions style={{ display: 'flex', justifyContent: 'center', padding: '2%' }}>
-        <Button size="small" id="btn" target='blank' href={`${one.link}`}>Read here</Button>
-        <ThumbUpAltOutlinedIcon style={{ marginLeft: '10%', color:' rgba(0, 0, 0, 0.54)' }} fontSize="large" />
-        <p>{one.tot_likes}</p>
+      <CardActions style={{ display: 'flex', justifyContent: 'center', padding: 0 }}>
+        <Button size="small" id="btn" target='blank' href={`${one && one.link}`}>Read here</Button>
+        { logInStatus && logInStatus ? 
+        <ThumbUpAltOutlinedIcon style={{ marginLeft: '10%' }} fontSize="large" 
+        className={ userInfos && userInfos.posts_liked.includes(one && one._id) ? 'blue' : 'grey' } onClick={() => handleLikes(one && one)} />
+        : <p style={{ color: 'rgba(0, 0, 0, 0.54)' }}>likes:</p>
+        }
+        <p style={{ color: 'rgba(0, 0, 0, 0.54)' }}>{one && one.tot_likes}</p>
       </CardActions>
     </Card>
 

@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { NavLink, useHistory, useParams } from "react-router-dom"
 
-import './styles.css'
 import { LogInStatusContext } from '../context/LogInStatus'
 import { UserInfosContext } from '../context/UserInfos'
 
