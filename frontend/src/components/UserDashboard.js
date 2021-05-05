@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { NavLink, Link, useHistory, useParams } from "react-router-dom"
+import Axios from 'axios'
 
 import { LogInStatusContext } from '../context/LogInStatus'
 import { UserInfosContext } from '../context/UserInfos'
@@ -84,6 +85,23 @@ export default function UserDashboard() {
     setUserInfos()
   }
 
+  const [postsCreated, setPostsCreated] = useState([])
+
+  useEffect(() => {
+    if(logInStatus && logInStatus) {
+      if(userInfos && userInfos.token) {
+        const config = {headers: {'x-auth-token': `${userInfos && userInfos.token}` }}
+        Axios.get(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, config)
+        .then((res) => {
+        setPostsCreated(res.data[0].postsCreated)
+      }).catch((err) => {
+        if(err) {
+          console.log(err)
+        }})
+    }
+    }
+  }, [logInStatus, userInfos])
+
 
   return (
     <div className={classes.root}>
@@ -121,11 +139,11 @@ export default function UserDashboard() {
       <TableContainer component={Paper}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
-      {userInfos && userInfos.posts_liked.map((one) => {
+      {postsCreated && postsCreated.map((one) => {
         return (
         <TableRow>
             <TableCell>Title:  </TableCell>
-            <TableCell>some title  </TableCell>
+            <TableCell> {one.title} </TableCell>
             <TableCell></TableCell>
           </TableRow>)
       })}
