@@ -78,7 +78,7 @@ export default function LoginRegister() {
         newPost, config)
         .then((res) => {
         setListOfPosts([
-          newPost && newPost,
+          newPost,
           ...listOfPosts
         ])
         // you should empty the inputs !!

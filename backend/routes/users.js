@@ -9,7 +9,8 @@ const {
   list_allUsers,
   find_oneUser,
   login_user,
-  update_user
+  update_user,
+  posts_createdByUser
 } = require('../controllers/UserController')
 
 router.post('/login', login_user)
@@ -22,6 +23,7 @@ router.post('/register',
 ],
 create_oneUser)
 
+router.get('/:id', authenticatingUser, posts_createdByUser)
 router.put('/:id', authenticatingUser, update_user)
 
 // router.get('/:id', find_oneUser)

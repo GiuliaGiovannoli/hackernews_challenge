@@ -20,7 +20,7 @@ exports.list_allPosts = async (req, res) => {
 
 exports.find_onePost = async (req, res) => {
   const id = req.params.id
-  const post = await Post.findById(id)
+  const post = await Post.findById(id).populate('author')
   if(!post) {
     res.status(401).json({
       msg: "Post does not exist."

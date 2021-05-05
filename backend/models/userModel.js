@@ -5,8 +5,7 @@ const userSchema = new Schema({
   email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   username: { type: String, required: true, unique: true },
-  posts_liked: [ { type: Schema.Types.ObjectId, ref: "Post" } ],
-  posts_created: [ { type: Schema.Types.ObjectId, ref: "Post" } ]
+  posts_liked: [ { type: Schema.Types.ObjectId, ref: "Post" } ]
 });
 
 const User = mongoose.model("User", userSchema);
