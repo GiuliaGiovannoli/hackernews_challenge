@@ -39,16 +39,23 @@ exports.find_oneUser = async (req, res) => {
 exports.update_user = async (req, res) => {
   //no for password! only for the rest of the user model
   const idTarget = req.params.id
-  const user = await User.findById(idTarget)
-  if(!user) {
+  const userTarget = await User.findById(idTarget)
+  if(!userTarget) {
     res.status(401).json({
       msg: "No user found"
   })
-  } else {
-  User.findOneAndUpdate({ _id: idTarget }, { ...req.body }, { new: true })
+  } else if(userTarget) {
+    const { username, email } = req.body
+    const user = await User.findOne({email, username})
+    if(user) {
+      res.status(401).json({
+        msg: "User already exists"
+    })} else if (!user) {
+      User.findOneAndUpdate({ _id: idTarget }, { ...req.body }, { new: true })
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err.message))}
-}
+    }  
+} 
 
 exports.login_user = async (req, res) => {
   const { email, password } = req.body
@@ -81,3 +88,25 @@ exports.login_user = async (req, res) => {
       })
       }}
   }
+
+exports.posts_createdByUser = async (req, res) => {
+  const idTarget = req.params.id
+  const user = await User.findById(idTarget)
+  if(!user) {
+    res.status(401).json({
+      msg: "No user found"
+  })
+  } else {
+    User.aggregate([
+      {
+        $lookup: {
+          from: "posts",
+          localField: "_id",
+          foreignField: "author",
+          as: "postsCreated"
+        }
+      }, { $match: { "postsCreated.author": user._id } }
+    ])
+    .then(data => res.json(data))
+    .catch(err => res.status(500).json(err.message))}
+}
