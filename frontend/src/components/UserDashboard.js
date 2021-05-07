@@ -67,7 +67,10 @@ const useStyles = makeStyles((theme) => ({
 
 export default function UserDashboard() {
 
+  const BACKEND_URL = process.env.REACT_APP_PROD_URL
+
   const classes = useStyles();
+
   const [value, setValue] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -107,14 +110,14 @@ export default function UserDashboard() {
       const keyUser = localStorage.getItem('keyUser')
       if(idUser) {
         const config = {headers: {'x-auth-token': `${keyUser}` }}
-        Axios.get(`http://localhost:4000/api/users/${idUser}`, config)
+        Axios.get(`${BACKEND_URL}api/users/${idUser}`, config)
         .then((res) => {
         setUserInfos(res.data)
       }).catch((err) => {
         if(err) {
           console.log(err)
         }})
-        Axios.get(`http://localhost:4000/api/users/oneUser/posts/${idUser}`, config)
+        Axios.get(`${BACKEND_URL}api/users/oneUser/posts/${idUser}`, config)
         .then((res) => {
         setPostsCreated(res.data[0].postsCreated)
       }).catch((err) => {

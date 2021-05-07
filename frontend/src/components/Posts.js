@@ -35,6 +35,8 @@ const useStyles = makeStyles({
 
 export default function Posts() {
 
+  const BACKEND_URL = process.env.REACT_APP_PROD_URL
+
   const classes = useStyles();
 
   const { category } = useParams()
@@ -49,7 +51,7 @@ export default function Posts() {
 
 
   function fetchingPosts() {
-      fetch('http://localhost:4000/api/posts')
+      fetch(`${BACKEND_URL}api/posts`)
                 .then(res=> res.json())
                 .then(json=> setPosts(json))
   }
@@ -73,7 +75,7 @@ export default function Posts() {
     const checkPostsLiked = userInfos && userInfos.posts_liked.find((anyPost) => anyPost._id === post._id)
     if(!checkPostsLiked) {
     const likesNumber = { tot_likes: post.tot_likes + 1 }
-    Axios.put(`http://localhost:4000/api/posts/likes/${post._id}`, likesNumber)
+    Axios.put(`${BACKEND_URL}api/posts/likes/${post._id}`, likesNumber)
       .then((res) => {
         let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === res.data._id) { return {
           ...anyPost, tot_likes: res.data.tot_likes 
@@ -84,7 +86,7 @@ export default function Posts() {
         //UPDATING USER INFOS
         const keyUser = localStorage.getItem('keyUser')
         const config = {headers: {'x-auth-token': `${keyUser}` }}
-        Axios.put(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, 
+        Axios.put(`${BACKEND_URL}api/users/${userInfos && userInfos._id}`, 
         {posts_liked: [post, ...userInfos && userInfos.posts_liked]}, config )
         .then((res) => {
           setUserInfos({...userInfos && userInfos, posts_liked: [...userInfos && userInfos.posts_liked, post]})
@@ -95,7 +97,7 @@ export default function Posts() {
         // step 2 if the user dislike a post
         else if (checkPostsLiked) {
           const likesNumber = { tot_likes: post.tot_likes - 1 }
-          Axios.put(`http://localhost:4000/api/posts/likes/${post && post._id}`, likesNumber)
+          Axios.put(`${BACKEND_URL}api/posts/likes/${post && post._id}`, likesNumber)
             .then((res) => {
               let updatingList = listOfPosts && listOfPosts.map((anyPost) => { if(anyPost._id === res.data._id) { return {
                 ...anyPost, tot_likes: res.data.tot_likes
@@ -107,7 +109,7 @@ export default function Posts() {
               const keyUser = localStorage.getItem('keyUser')
               const config = {headers: {'x-auth-token': `${keyUser}` }}
               let updatingList = userInfos && userInfos.posts_liked.filter((anyPost) => {return anyPost._id !== post._id})
-              Axios.put(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, 
+              Axios.put(`${BACKEND_URL}api/users/${userInfos && userInfos._id}`, 
               {posts_liked: updatingList}, config )
               .then((res) => {
                 setUserInfos({...userInfos, posts_liked: updatingList})

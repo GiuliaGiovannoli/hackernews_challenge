@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavBar() {
 
+  const BACKEND_URL = process.env.REACT_APP_PROD_URL
+
   const classes = useStyles();
 
   const history = useHistory()
@@ -72,7 +74,7 @@ export default function NavBar() {
       const keyUser = localStorage.getItem('keyUser')
       if(idUser) {
         const config = {headers: {'x-auth-token': `${keyUser}` }}
-        Axios.get(`http://localhost:4000/api/users/${idUser}`, config)
+        Axios.get(`${BACKEND_URL}api/users/${idUser}`, config)
         .then((res) => {
         setUserInfos(res.data)
       }).catch((err) => {
