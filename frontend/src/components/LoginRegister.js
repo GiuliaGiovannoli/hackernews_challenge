@@ -2,8 +2,9 @@ import React, { useState, useEffect, useContext } from 'react';
 import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 import Axios from 'axios'
 
-import { LogInStatusContext } from '../context/LogInStatus'
-import { UserInfosContext } from '../context/UserInfos'
+import { tokenInLocalStorage } from '../utils/authentication'
+// import { LogInStatusContext } from '../context/LogInStatus'
+// import { UserInfosContext } from '../context/UserInfos'
 
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -42,9 +43,8 @@ export default function LoginRegister() {
 
   const history = useHistory()
 
-  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
-
-  const [userInfos, setUserInfos] = useContext(UserInfosContext)
+  // const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
+  // const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
   //REGISTRATION
   const [userRegistrering, setUserRegistrering] = useState({
@@ -106,15 +106,15 @@ export default function LoginRegister() {
         const id = res.data.user._id
         /* window.alert('You are now logged in.') */
         history.push(`/access/user/${id}`)
-        setLogInStatus(true)
+        /* setLogInStatus(true)
         setUserInfos(res.data.user)
         setUserInfos({
           _id: res.data.user._id,
           username: res.data.user.username,
           email: res.data.user.email,
           posts_liked: res.data.user.posts_liked,
-          token: res.data.token
-        })
+          token: res.data.token }) */
+          tokenInLocalStorage(res.data)
       })
       .catch((err) => {
         if(err) {

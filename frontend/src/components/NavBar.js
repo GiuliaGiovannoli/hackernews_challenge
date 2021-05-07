@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react'
 import { NavLink, useHistory, useParams } from "react-router-dom"
+import Axios from 'axios'
 
 import { LogInStatusContext } from '../context/LogInStatus'
 import { UserInfosContext } from '../context/UserInfos'
@@ -41,6 +42,30 @@ export default function NavBar() {
   const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
   const [userInfos, setUserInfos] = useContext(UserInfosContext)
+
+  const handleLogInStatus = () => {
+    if(localStorage.getItem('logInStatus')) {
+      setLogInStatus(true)
+    }
+  }
+  
+  useEffect(() => {
+    handleLogInStatus()
+    if(logInStatus && logInStatus) {
+      const idUser = localStorage.getItem('idUser')
+      const keyUser = localStorage.getItem('keyUser')
+      if(idUser) {
+        const config = {headers: {'x-auth-token': `${keyUser}` }}
+        Axios.get(`http://localhost:4000/api/users/${idUser}`, config)
+        .then((res) => {
+        setUserInfos(res.data)
+      }).catch((err) => {
+        if(err) {
+          console.log(err)
+        }})
+    }
+    }
+  }, [logInStatus])
 
 
   return (

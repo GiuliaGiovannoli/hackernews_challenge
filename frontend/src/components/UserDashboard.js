@@ -79,7 +79,16 @@ export default function UserDashboard() {
 
   const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
+  const handleLogInStatus = () => {
+    if(localStorage.getItem('logInStatus')) {
+      setLogInStatus(true)
+    }
+  }
+
   function handleLogOut() {
+    localStorage.removeItem('logInStatus')
+    localStorage.removeItem('idUser')
+    localStorage.removeItem('keyUser')
     setLogInStatus(false)
     history.push('/access/users')
     setUserInfos()
@@ -87,20 +96,30 @@ export default function UserDashboard() {
 
   const [postsCreated, setPostsCreated] = useState([])
 
+
   useEffect(() => {
+    handleLogInStatus()
     if(logInStatus && logInStatus) {
-      if(userInfos && userInfos.token) {
-        const config = {headers: {'x-auth-token': `${userInfos && userInfos.token}` }}
-        Axios.get(`http://localhost:4000/api/users/${userInfos && userInfos._id}`, config)
+      const idUser = localStorage.getItem('idUser')
+      const keyUser = localStorage.getItem('keyUser')
+      if(idUser) {
+        const config = {headers: {'x-auth-token': `${keyUser}` }}
+        Axios.get(`http://localhost:4000/api/users/${idUser}`, config)
+        .then((res) => {
+        setUserInfos(res.data)
+      }).catch((err) => {
+        if(err) {
+          console.log(err)
+        }})
+        Axios.get(`http://localhost:4000/api/users/oneUser/posts/${idUser}`, config)
         .then((res) => {
         setPostsCreated(res.data[0].postsCreated)
       }).catch((err) => {
         if(err) {
           console.log(err)
         }})
-    }
-    }
-  }, [logInStatus, userInfos])
+    }}
+  }, [logInStatus])
 
 
   return (
@@ -143,7 +162,7 @@ export default function UserDashboard() {
         return (
         <TableRow>
             <TableCell>Title:  </TableCell>
-            <TableCell> {one.title} </TableCell>
+            <TableCell style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}> {one.title} </TableCell>
             <TableCell></TableCell>
           </TableRow>)
       })}
@@ -159,7 +178,7 @@ export default function UserDashboard() {
         return (
         <TableRow>
             <TableCell>Title:  </TableCell>
-            <TableCell>{one.title}  </TableCell>
+            <TableCell style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>{one.title}  </TableCell>
             <TableCell><a id="linkStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
           </TableRow>)
       })}

@@ -25,7 +25,7 @@ exports.list_allUsers = async (req, res) => {
 
 exports.find_oneUser = async (req, res) => {
   const idTarget = req.params.id
-  const user = User.findById(idTarget)
+  const user = User.findById(idTarget).populate('posts_liked')
   if(!user) {
     res.status(401).json({
       msg: "No user found"
@@ -59,7 +59,7 @@ exports.update_user = async (req, res) => {
 
 exports.login_user = async (req, res) => {
   const { email, password } = req.body
-  const user = await User.findOne({email}).populate('posts_liked').populate('posts_created')
+  const user = await User.findOne({email}).populate('posts_liked')
   if(!user) {
     res.status(401).json({
       msg: "No user found"
