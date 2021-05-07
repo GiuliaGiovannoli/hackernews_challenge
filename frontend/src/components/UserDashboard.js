@@ -4,6 +4,7 @@ import Axios from 'axios'
 
 import { LogInStatusContext } from '../context/LogInStatus'
 import { UserInfosContext } from '../context/UserInfos'
+// import { ListOfPostsContext } from '../context/ListOfPosts'
 
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -75,6 +76,8 @@ export default function UserDashboard() {
 
   const history = useHistory()
 
+  // const [listOfPosts, setListOfPosts] = useContext(ListOfPostsContext)
+
   const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
   const [userInfos, setUserInfos] = useContext(UserInfosContext)
@@ -143,12 +146,10 @@ export default function UserDashboard() {
           <TableRow>
             <TableCell>Username:  </TableCell>
             <TableCell>{userInfos.username}  </TableCell>
-            <TableCell>Icon  </TableCell>
           </TableRow>
           <TableRow>
             <TableCell>Email:  </TableCell>
             <TableCell>{userInfos.email}  </TableCell>
-            <TableCell>Icon  </TableCell>
           </TableRow>
         </TableHead>
         </Table>
@@ -163,7 +164,7 @@ export default function UserDashboard() {
         <TableRow>
             <TableCell>Title:  </TableCell>
             <TableCell style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}> {one.title} </TableCell>
-            <TableCell></TableCell>
+            <TableCell><a id="linkStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
           </TableRow>)
       })}
       </TableHead>
@@ -189,5 +190,7 @@ export default function UserDashboard() {
     </div>
   );
 }
+
+
 
 

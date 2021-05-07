@@ -12,6 +12,8 @@ import SearchIcon from '@material-ui/icons/Search';
 import Typography from '@material-ui/core/Typography';
 import Link from '@material-ui/core/Link';
 import PersonOutlineIcon from '@material-ui/icons/PersonOutline';
+import Popover from '@material-ui/core/Popover';
+import InputBase from '@material-ui/core/InputBase';
 
 const useStyles = makeStyles((theme) => ({
   toolbar: {
@@ -28,6 +30,9 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     flexShrink: 0,
   },
+  typography: {
+    padding: theme.spacing(2),
+  },
 }));
 
 
@@ -35,9 +40,20 @@ export default function NavBar() {
 
   const classes = useStyles();
 
-  function handleClick() {
-    //
-  }
+  const history = useHistory()
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? 'simple-popover' : undefined;
 
   const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
@@ -68,10 +84,25 @@ export default function NavBar() {
   }, [logInStatus])
 
 
+  const [inputSaved, setInputSaved] = useState('')
+
+  const saveInput= () => {
+    setInputSaved(document.querySelector('#input').value)
+  }
+
+  const handleKeyPress = (e) => {
+    if(inputSaved && inputSaved){
+    if (e.key === 'Enter') {
+      history.push(`/${inputSaved}`)
+      setAnchorEl(null)
+    }}
+  }
+
+
   return (
     <React.Fragment>
       <Toolbar className={classes.toolbar} style={{ backgroundColor: '#eeeeee' }}>
-      <Button variant="outlined" size="small" id="btn" onClick={() => handleClick()}>
+      <Button aria-describedby={id} variant="outlined" size="small" id="btn" onClick={handleClick}>
       <SearchIcon />
         </Button>
         <Typography
@@ -106,7 +137,38 @@ export default function NavBar() {
           <NavLink to="/Malware" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Malware </Link></NavLink>
       </Toolbar>
+      <div>
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+      >
+        <InputBase
+        id="input"
+              placeholder="Search…"
+              classes={{
+                root: classes.inputRoot,
+                input: classes.inputInput,
+              }}
+              inputProps={{ 'aria-label': 'search' }}
+              onChange={saveInput}
+              onKeyPress={handleKeyPress}
+            />
+      </Popover>
+    </div>
     </React.Fragment>
-  );
+  )
 }
+
+
+
 
