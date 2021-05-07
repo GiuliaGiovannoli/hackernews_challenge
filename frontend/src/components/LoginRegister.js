@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 import Axios from 'axios'
+import isEmail from 'is-email'
 
 import { tokenInLocalStorage } from '../utils/authentication'
 // import { LogInStatusContext } from '../context/LogInStatus'
@@ -62,7 +63,13 @@ export default function LoginRegister() {
 
   const submitRegistration = (e) => {
     e.preventDefault();
-    if (userRegistrering.usernameRegistrering !== '' && userRegistrering.emailRegistrering !== '' && userRegistrering.passwordRegistrering !== '') {
+    if (userRegistrering.usernameRegistrering !== '' && userRegistrering.emailRegistrering !== '' 
+    && userRegistrering.passwordRegistrering !== '') {
+      if(isEmail(userRegistrering && userRegistrering.emailRegistrering)) {
+        setUserRegistrering({
+          ...userRegistrering,
+          emailRegistrering: userRegistrering && userRegistrering.emailRegistrering
+        })
       Axios.post('http://localhost:4000/api/users/register', {
         username: userRegistrering.usernameRegistrering,
         email: userRegistrering.emailRegistrering,
@@ -77,8 +84,9 @@ export default function LoginRegister() {
           // you should empty the inputs !!
         }
       })
-    }
-    else {
+    } else {
+      window.alert('Please enter a valid email.')
+    }} else {
       window.alert('Please fill all forms.')
     }
   }
