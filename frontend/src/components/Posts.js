@@ -47,10 +47,15 @@ export default function Posts() {
 
   const [listOfPosts, setListOfPosts] = useContext(ListOfPostsContext)
 
-  useEffect(() => {
+
+  function fetchingPosts() {
       fetch('http://localhost:4000/api/posts')
                 .then(res=> res.json())
                 .then(json=> setPosts(json))
+  }
+
+  useEffect(() => {
+    fetchingPosts()
   }, [])
 
   useEffect(() => {
@@ -82,6 +87,7 @@ export default function Posts() {
         {posts_liked: [post, ...userInfos && userInfos.posts_liked]}, config )
         .then((res) => {
           setUserInfos({...userInfos && userInfos, posts_liked: [...userInfos && userInfos.posts_liked, post]})
+          fetchingPosts()
         }).catch((err) => {
           if(err) {console.log(err)}})
         } 
@@ -104,6 +110,7 @@ export default function Posts() {
               {posts_liked: updatingList}, config )
               .then((res) => {
                 setUserInfos({...userInfos, posts_liked: updatingList})
+                fetchingPosts()
               }).catch((err) => {
                 if(err) {console.log(err)}})
               } 
@@ -114,7 +121,7 @@ export default function Posts() {
     <>
 
     { logInStatus && logInStatus ? 
-    <CreatePost /> : null
+    <CreatePost fetchingPosts={fetchingPosts} /> : null
     }
 
     <div style={{ display: 'flex', margin: '2% 15%', flexDirection:'column' }}>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react'
+import { NavLink, Link, useHistory, useParams } from "react-router-dom"
 import Axios from 'axios'
 import isUrl from 'is-url'
 
@@ -35,9 +36,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function LoginRegister() {
+export default function LoginRegister({fetchingPosts}) {
 
   const classes = useStyles()
+
+  const history = useHistory()
 
   const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
@@ -92,6 +95,7 @@ export default function LoginRegister() {
           res.data,
           ...listOfPosts
         ])
+        fetchingPosts()
         // you should empty the inputs !!
       }).catch((err) => {
         if(err) {
