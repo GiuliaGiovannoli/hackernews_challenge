@@ -10,6 +10,8 @@
     "@testing-library/user-event": "^12.8.3",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
+    "is-email": "^1.0.0",
+    "is-url": "^1.2.4",
     "jsonwebtoken": "^8.5.1",
     "react": "^17.0.2",
     "react-bootstrap": "^1.5.2",

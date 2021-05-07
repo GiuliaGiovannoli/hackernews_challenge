@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useContext } from 'react'
 import Axios from 'axios'
+import isUrl from 'is-url'
 
 import { UserInfosContext } from '../context/UserInfos'
+import { LogInStatusContext } from '../context/LogInStatus'
 import { ListOfPostsContext } from '../context/ListOfPosts'
 
 import Button from '@material-ui/core/Button';
@@ -35,7 +37,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginRegister() {
 
-  const classes = useStyles();
+  const classes = useStyles()
+
+  const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
   const [userInfos, setUserInfos] = useContext(UserInfosContext)
 
@@ -43,7 +47,7 @@ export default function LoginRegister() {
     title: '',
     link: '',
     about: '',
-    author: userInfos && userInfos._id,
+    author: localStorage.getItem('idUser'),
     category: ''
   })
 
@@ -54,6 +58,13 @@ export default function LoginRegister() {
       ...post,
       [e.target.name]: e.target.value
     })
+      /* if(isUrl(post && post.link)) {
+        console.log(isUrl(post && post.link))
+        setPost({
+          ...post,
+          link: post && post.link
+        })
+      } */
   }
 
   const handleOnChecked = (categoryName) => {
@@ -66,19 +77,21 @@ export default function LoginRegister() {
   const submitPublish = (e) => {
     e.preventDefault()
     if (post.title !== '' && post.link !== '' && post.about !== '' && post.category !== '') {
-      if(userInfos && userInfos.token) {
-        const config = {headers: {'x-auth-token': `${userInfos && userInfos.token}` }}
+      if(logInStatus && logInStatus) {
+        const keyUser = localStorage.getItem('keyUser')
+        const config = {headers: {'x-auth-token': `${keyUser}` }}
         const newPost = {
           title: post && post.title,
           link: post && post.link,
           author: post && post.author,
           about: post && post.about,
+          tot_likes: 0,
           category: post && post.category }
         Axios.post("http://localhost:4000/api/posts", 
         newPost, config)
         .then((res) => {
         setListOfPosts([
-          newPost,
+          res.data,
           ...listOfPosts
         ])
         // you should empty the inputs !!

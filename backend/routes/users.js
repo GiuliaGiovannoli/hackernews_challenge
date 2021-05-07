@@ -13,6 +13,8 @@ const {
   posts_createdByUser
 } = require('../controllers/UserController')
 
+router.get('/oneUser/posts/:id', authenticatingUser, posts_createdByUser)
+
 router.post('/login', login_user)
 
 router.post('/register', 
@@ -23,12 +25,9 @@ router.post('/register',
 ],
 create_oneUser)
 
-router.get('/:id', authenticatingUser, posts_createdByUser)
+router.get('/:id', authenticatingUser, find_oneUser)
 router.put('/:id', authenticatingUser, update_user)
 
-// router.get('/:id', find_oneUser)
 // router.get('/', list_allUsers)
-
-// add in model history of created posts
 
 module.exports = router;
