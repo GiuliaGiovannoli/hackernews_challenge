@@ -77,6 +77,11 @@ export default function LoginRegister() {
   const submitPublish = (e) => {
     e.preventDefault()
     if (post.title !== '' && post.link !== '' && post.about !== '' && post.category !== '') {
+      if(isUrl(post && post.link)) {
+        setPost({
+          ...post,
+          link: post && post.link
+        })
       if(logInStatus && logInStatus) {
         const keyUser = localStorage.getItem('keyUser')
         const config = {headers: {'x-auth-token': `${keyUser}` }}
@@ -101,6 +106,8 @@ export default function LoginRegister() {
           window.alert('Post already exists.')
           // you should empty the inputs !! 
         }})
+    }} else {
+      window.alert('Please enter a valid link (example: https://thehackernews.com/).')
     }} else {
       window.alert('Please fill all forms.')}
   }
