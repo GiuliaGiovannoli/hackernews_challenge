@@ -58,13 +58,6 @@ export default function LoginRegister() {
       ...post,
       [e.target.name]: e.target.value
     })
-      /* if(isUrl(post && post.link)) {
-        console.log(isUrl(post && post.link))
-        setPost({
-          ...post,
-          link: post && post.link
-        })
-      } */
   }
 
   const handleOnChecked = (categoryName) => {
