@@ -38,6 +38,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginRegister({fetchingPosts}) {
 
+  const BACKEND_URL = process.env.REACT_APP_PROD_URL
+
   const classes = useStyles()
 
   const history = useHistory()
@@ -88,7 +90,7 @@ export default function LoginRegister({fetchingPosts}) {
           about: post && post.about,
           tot_likes: 0,
           category: post && post.category }
-        Axios.post("http://localhost:4000/api/posts", 
+        Axios.post(`${BACKEND_URL}api/posts`, 
         newPost, config)
         .then((res) => {
         setListOfPosts([

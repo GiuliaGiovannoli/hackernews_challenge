@@ -40,6 +40,8 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LoginRegister() {
 
+  const BACKEND_URL = process.env.REACT_APP_PROD_URL
+
   const classes = useStyles();
 
   const history = useHistory()
@@ -70,7 +72,7 @@ export default function LoginRegister() {
           ...userRegistrering,
           emailRegistrering: userRegistrering && userRegistrering.emailRegistrering
         })
-      Axios.post('http://localhost:4000/api/users/register', {
+      Axios.post(`${BACKEND_URL}api/users/register`, {
         username: userRegistrering.usernameRegistrering,
         email: userRegistrering.emailRegistrering,
         password: userRegistrering.passwordRegistrering
@@ -107,7 +109,7 @@ export default function LoginRegister() {
   const submitLogIn = (e) => {
     e.preventDefault()
     if (userLogging.emailLogging !== '' && userLogging.passwordLogging !== '') {
-      Axios.post('http://localhost:4000/api/users/login', {
+      Axios.post(`${BACKEND_URL}api/users/login`, {
         email: userLogging.emailLogging,
         password: userLogging.passwordLogging
       }).then((res) => {
