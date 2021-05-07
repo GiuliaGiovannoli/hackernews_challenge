@@ -62,7 +62,8 @@ export default function Posts() {
     if(!category && posts && posts) {
       setListOfPosts(posts && posts)
     } else if(category) {
-      const filteringPosts = posts && posts.filter((one) => one.category[0].includes(category))
+      const filteringPosts = posts && posts.filter((one) => one.category[0].includes(category) 
+      || one.title.toLowerCase().includes(category.toLowerCase()))
       setListOfPosts(filteringPosts)}
   }, [category, posts])
 
@@ -125,7 +126,8 @@ export default function Posts() {
     }
 
     <div style={{ display: 'flex', margin: '2% 15%', flexDirection:'column' }}>
-    { listOfPosts && listOfPosts.map((one) => {
+    { listOfPosts && listOfPosts.length >= 1 ? 
+      listOfPosts && listOfPosts.map((one) => {
       return(
 
         <Card className={classes.root} 
@@ -146,9 +148,6 @@ export default function Posts() {
       <CardActions style={{ display: 'flex', justifyContent: 'center', padding: 0 }}>
         <Button size="small" id="btn" target='blank' href={`${one && one.link}`}>Read here</Button>
         { logInStatus && logInStatus ? 
-
-        //check it again !!
-
         <ThumbUpAltOutlinedIcon style={{ marginLeft: '10%' }} fontSize="large" 
         onClick={() =>{handleLikes(one)}} 
         className={ userInfos && userInfos.posts_liked.find(element => element._id === one._id) ? 'blue' : 'grey' } />
@@ -160,6 +159,10 @@ export default function Posts() {
 
       )
     })
+    : 
+    (
+      <div><p>No post found.</p>
+      <NavLink to="/" id="linkStyle"><Button id="btn">Back</Button></NavLink></div>)
 }
     </div>
     </>

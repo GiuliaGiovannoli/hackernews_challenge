@@ -18,10 +18,10 @@ export default function Footer() {
             <footer style={{ backgroundColor: '#eeeeee', width: '100%', marginTop: '2%' }}>
             <br></br>
             <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <Button id="btn">
+              <Button id="btn"  target="blank" href="https://github.com/GiuliaGiovannoli/hackernews_challenge">
               Check the Code
               </Button>
-              <Button id="btn">
+              <Button id="btn"  target="blank" href="https://www.linkedin.com/in/giulia-giovannoli/">
               Contact the Author
               </Button>
             </div>
