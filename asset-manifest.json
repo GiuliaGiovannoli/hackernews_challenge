@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/hackernews_challenge/static/css/main.6574c4c4.chunk.css",
-    "main.js": "/hackernews_challenge/static/js/main.30a56e15.chunk.js",
-    "main.js.map": "/hackernews_challenge/static/js/main.30a56e15.chunk.js.map",
+    "main.js": "/hackernews_challenge/static/js/main.788a5b56.chunk.js",
+    "main.js.map": "/hackernews_challenge/static/js/main.788a5b56.chunk.js.map",
     "runtime-main.js": "/hackernews_challenge/static/js/runtime-main.6480a5a0.js",
     "runtime-main.js.map": "/hackernews_challenge/static/js/runtime-main.6480a5a0.js.map",
     "static/js/2.7cf2f007.chunk.js": "/hackernews_challenge/static/js/2.7cf2f007.chunk.js",
@@ -15,6 +15,6 @@
     "static/js/runtime-main.6480a5a0.js",
     "static/js/2.7cf2f007.chunk.js",
     "static/css/main.6574c4c4.chunk.css",
-    "static/js/main.30a56e15.chunk.js"
+    "static/js/main.788a5b56.chunk.js"
   ]
 }
