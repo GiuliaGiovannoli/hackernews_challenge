@@ -1,14 +1,25 @@
 body {
-  color: #3d84b8;
+  color: #eeeeee;
 }
 
 #btn {
+  background-color: #eeeeee;
+  border: solid 1px #eeeeee;
+  color: #3d84b8;
+}
+
+#abtn {
   background-color: #3d84b8;
   border: solid 1px #3d84b8;
   color: #eeeeee;
 }
 
 #linkStyle {
+  text-decoration: none;
+  color: #eeeeee;
+}
+
+#aStyle {
   text-decoration: none;
   color: #3d84b8;
 }

@@ -139,7 +139,7 @@ export default function Posts() {
       return(
 
         <Card className={classes.root} 
-    style={{ textAlign: 'center', boxShadow: '0px 0px 0px 0px', marginBottom: '2%', border: '1px solid #eeeeee', padding: '0.5%' }}>
+    style={{ textAlign: 'center', boxShadow: '0px 0px 0px 0px', marginBottom: '2%', border: '2px solid #eeeeee', padding: '0.5%' }}>
       <CardContent style={{ padding: 0 }}>
         <Typography className={classes.title} color="textPrimary" style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>
           {one && one.title}
@@ -154,7 +154,7 @@ export default function Posts() {
         </Typography>
       </CardContent>
       <CardActions style={{ display: 'flex', justifyContent: 'center', padding: 0 }}>
-        <Button size="small" id="btn" target='blank' href={`${one && one.link}`}>Read here</Button>
+        <Button size="small" id="abtn" target='blank' href={`${one && one.link}`}>Read here</Button>
         { logInStatus && logInStatus ? 
         <ThumbUpAltOutlinedIcon style={{ marginLeft: '10%' }} fontSize="large" 
         onClick={() =>{handleLikes(one)}} 
