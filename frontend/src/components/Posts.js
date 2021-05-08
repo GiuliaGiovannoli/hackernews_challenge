@@ -128,7 +128,7 @@ export default function Posts() {
     }
 
     <div style={{ display: 'flex', margin: '2% 15%', flexDirection:'column' }}>
-    { listOfPosts && listOfPosts.length >= 1 ? 
+    { listOfPosts && listOfPosts.length != 1 ? 
       listOfPosts && listOfPosts.map((one) => {
       return(
 
