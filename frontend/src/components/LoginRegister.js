@@ -140,11 +140,11 @@ export default function LoginRegister() {
   return (
     <>
     <Container component="main" maxWidth="s" id="column"
-    style={{ display: 'flex', justifyContent: 'space-around', alignContent: 'flex-start', color: '#3d84b8' }}>
+    style={{ display: 'flex', justifyContent: 'space-around', alignContent: 'flex-start', color: '#395697' }}>
       <CssBaseline />
       <div className={classes.paper} id="card"
       style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
-        <Avatar className={classes.avatar} style={{ backgroundColor: '#3d84b8' }}>
+        <Avatar className={classes.avatar} style={{ backgroundColor: '#395697' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -191,7 +191,7 @@ export default function LoginRegister() {
             type="submit"
             variant="contained"
             color="primary"
-            style={{ width: '83%', backgroundColor: '#3d84b8' }}
+            style={{ width: '83%', backgroundColor: '#395697' }}
             className={classes.submit}
             onClick={submitRegistration}
           >
@@ -204,7 +204,7 @@ export default function LoginRegister() {
       <CssBaseline />
       <div className={classes.paper} id="card"
       style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '2%', borderRadius: '5%' }}>
-        <Avatar className={classes.avatar} style={{ backgroundColor: '#3d84b8' }}>
+        <Avatar className={classes.avatar} style={{ backgroundColor: '#395697' }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
@@ -239,7 +239,7 @@ export default function LoginRegister() {
             variant="contained"
             color="primary"
             className={classes.submit}
-            style={{ backgroundColor: '#3d84b8' }}
+            style={{ backgroundColor: '#395697' }}
             onClick={submitLogIn}
           >
             Sign In

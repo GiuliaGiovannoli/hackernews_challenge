@@ -20,6 +20,10 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import MailOutlineIcon from '@material-ui/icons/MailOutline';
+import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
+import DescriptionOutlinedIcon from '@material-ui/icons/DescriptionOutlined';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -134,7 +138,7 @@ export default function UserDashboard() {
     <Button id="abtn" style={{ float: 'right', margin: '2%' }} onClick={() => handleLogOut()}>
       Log out
     </Button>}
-      <AppBar position="static" style={{ backgroundColor: '#3d84b8', marginTop: '2%'  }}>
+      <AppBar position="static" style={{ backgroundColor: '#395697', marginTop: '2%'  }}>
         <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
           <Tab label="Profile" {...a11yProps(0)} />
           <Tab label="Posts published" {...a11yProps(1)} />
@@ -147,11 +151,11 @@ export default function UserDashboard() {
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Username:  </TableCell>
-            <TableCell>{userInfos.username}  </TableCell>
+            <TableCell><PermIdentityIcon /></TableCell>
+            <TableCell>{userInfos.username}</TableCell>
           </TableRow>
           <TableRow>
-            <TableCell>Email:  </TableCell>
+            <TableCell><MailOutlineIcon /></TableCell>
             <TableCell>{userInfos.email}  </TableCell>
           </TableRow>
         </TableHead>
@@ -165,9 +169,9 @@ export default function UserDashboard() {
       {postsCreated && postsCreated.map((one) => {
         return (
         <TableRow>
-            <TableCell>Title:  </TableCell>
-            <TableCell style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}> {one.title} </TableCell>
-            <TableCell><a id="aStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
+            <TableCell><DescriptionOutlinedIcon /></TableCell>
+            <TableCell style={{ color: '#395697', fontSize: '1.1rem', textTransform: 'uppercase' }}>
+            <a id="aStyle" target="blank" href={one.link}>{one.title}</a></TableCell>
           </TableRow>)
       })}
       </TableHead>
@@ -181,9 +185,9 @@ export default function UserDashboard() {
       {userInfos && userInfos.posts_liked.map((one) => {
         return (
         <TableRow>
-            <TableCell>Title:  </TableCell>
-            <TableCell style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>{one.title}  </TableCell>
-            <TableCell><a id="aStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
+            <TableCell><ThumbUpAltOutlinedIcon /></TableCell>
+            <TableCell style={{ color: '#395697', fontSize: '1.1rem', textTransform: 'uppercase' }}><a id="aStyle" target="blank" href={one.link}>
+            {one.title}</a></TableCell>
           </TableRow>)
       })}
       </TableHead>

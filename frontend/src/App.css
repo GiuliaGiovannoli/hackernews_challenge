@@ -1,16 +1,17 @@
-body {
-  color: #eeeeee;
-}
-
 #btn {
   background-color: #eeeeee;
   border: solid 1px #eeeeee;
-  color: #3d84b8;
+  color: #395697;
+}
+
+span.PrivateTabIndicator-root-8.PrivateTabIndicator-colorSecondary-10.MuiTabs-indicator
+  #color {
+  background-color: #da7f8f !important;
 }
 
 #abtn {
-  background-color: #3d84b8;
-  border: solid 1px #3d84b8;
+  background-color: #395697;
+  border: solid 1px #395697;
   color: #eeeeee;
 }
 
@@ -21,7 +22,7 @@ body {
 
 #aStyle {
   text-decoration: none;
-  color: #3d84b8;
+  color: #395697;
 }
 
 #card {
@@ -33,7 +34,7 @@ body {
 }
 
 .blue {
-  color: #3d84b8 !important;
+  color: #395697 !important;
 }
 
 @media only screen and (max-width: 750px) {

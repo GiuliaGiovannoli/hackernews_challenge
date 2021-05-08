@@ -118,7 +118,7 @@ export default function LoginRegister({fetchingPosts}) {
       <div className={classes.paper}
       style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '1%', borderRadius: '2%', margin: 0, width: '60%' }}>
         <Typography component="h6" variant="h6" 
-        style={{ textAlign: 'center', color: '#3d84b8', fontWeigth: 'bold', fontSize: '1.1rem', textTransform: 'uppercase' }}>
+        style={{ textAlign: 'center', color: '#395697', fontWeigth: 'bold', fontSize: '1.1rem', textTransform: 'uppercase' }}>
           <h4>POST YOUR ARTICLE</h4>
         </Typography>
         <form className={classes.form} noValidate>
@@ -180,7 +180,7 @@ export default function LoginRegister({fetchingPosts}) {
             variant="contained"
             color="primary"
             className={classes.submit}
-            style={{ backgroundColor: '#3d84b8' }}
+            style={{ backgroundColor: '#395697' }}
             onClick={submitPublish}
           >
             Publish
