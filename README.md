@@ -8,6 +8,6 @@ About this Project: Hackernews version with login, registration and creating pos
 
 Tools here used: React, Javascript, Material UI, Node, Express, CSS and HTML
 
---------> For the deployed version please wait 20/30 seconds after clicking on the link. <----------------
+--------> For the deployed version please wait 10/30 seconds after clicking on the link. <----------------
 
 Thank you for checking the Project!
