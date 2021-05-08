@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react'
-import { BrowserRouter as Router, Switch, Route, NavLink, Link, Redirect } from "react-router-dom"
+import { Switch, Route, NavLink, Link, Redirect } from "react-router-dom"
 
 import { LogInStatusProvider } from './context/LogInStatus'
 import {  UserInfosProvider } from './context/UserInfos'
@@ -16,23 +16,23 @@ import './App.css';
 function App() {
   return (
     <>
-    <Router>
+    
     <LogInStatusProvider>
     <UserInfosProvider>
     <ListOfPostsProvider>
     <NavBar />
     <Switch>
-    <Route exact path="/hackernews_challenge/" component={Posts} />
-    <Route exact path="/hackernews_challenge/:category" component={Posts} />
-    <Route exact path="/hackernews_challenge/access/users" component={LoginRegister} />
-    <Route exact path="/hackernews_challenge/access/user/:id" component={UserDashboard} />
+    <Route exact path="/" component={Posts} />
+    <Route exact path="/:category" component={Posts} />
+    <Route exact path="/access/users" component={LoginRegister} />
+    <Route exact path="/access/user/:id" component={UserDashboard} />
     <Redirect to="/" />
     </Switch>
     <Footer />
     </ListOfPostsProvider>
     </UserInfosProvider>
     </LogInStatusProvider>
-    </Router>
+    
   </>
   );
 }
