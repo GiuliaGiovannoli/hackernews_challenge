@@ -22,11 +22,10 @@ function App() {
     <ListOfPostsProvider>
     <NavBar />
     <Switch>
-    <Route exact path="/" component={Posts} />
-    <Route exact path="/:category" component={Posts} />
-    <Route exact path="/access/users" component={LoginRegister} />
-    <Route exact path="/access/user/:id" component={UserDashboard} />
-    {/*<PrivateRoute exact path='/user/:id' component={UserDashboard} maybe?? !! />*/}
+    <Route exact path="/hackernews_challenge/" component={Posts} />
+    <Route exact path="/hackernews_challenge/:category" component={Posts} />
+    <Route exact path="/hackernews_challenge/access/users" component={LoginRegister} />
+    <Route exact path="/hackernews_challenge/access/user/:id" component={UserDashboard} />
     <Redirect to="/" />
     </Switch>
     <Footer />
