@@ -18,20 +18,20 @@ export default function Footer() {
             <footer style={{ backgroundColor: '#eeeeee', width: '100%', marginTop: '2%' }}>
             <br></br>
             <div style={{ display: 'flex', justifyContent: 'space-around' }}>
-              <Button id="btn"  target="blank" href="https://github.com/GiuliaGiovannoli/hackernews_challenge">
+              <Button id="abtn"  target="blank" href="https://github.com/GiuliaGiovannoli/hackernews_challenge">
               Check the Code
               </Button>
-              <Button id="btn"  target="blank" href="https://www.linkedin.com/in/giulia-giovannoli/">
+              <Button id="abtn"  target="blank" href="https://www.linkedin.com/in/giulia-giovannoli/">
               Contact the Author
               </Button>
             </div>
                 <div style={{ display: 'flex', justifyContent: 'space-around', marginTop: '2%' }}>
-                        <GitHubIcon/>
-                        <YouTubeIcon/>
-                        <TwitterIcon/>
-                        <FacebookIcon/>
-                        <InstagramIcon/>
-                        <LinkedInIcon/>
+                        <GitHubIcon style={{ color: '#395697' }} />
+                        <YouTubeIcon style={{ color: '#395697' }}/>
+                        <TwitterIcon style={{ color: '#395697' }}/>
+                        <FacebookIcon style={{ color: '#395697' }}/>
+                        <InstagramIcon style={{ color: '#395697' }}/>
+                        <LinkedInIcon style={{ color: '#395697' }}/>
                 </div>
                 <p style={{ textAlign: 'center' }}>Copyright &copy; {year}.</p>
             </footer>

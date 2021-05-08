@@ -14,6 +14,7 @@ import CardContent from '@material-ui/core/CardContent';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
+import PermIdentityIcon from '@material-ui/icons/PermIdentity';
 
 const useStyles = makeStyles({
   root: {
@@ -141,22 +142,21 @@ export default function Posts() {
         <Card className={classes.root} 
     style={{ textAlign: 'center', boxShadow: '0px 0px 0px 0px', marginBottom: '2%', border: '2px solid #eeeeee', padding: '0.5%' }}>
       <CardContent style={{ padding: 0 }}>
-        <Typography className={classes.title} color="textPrimary" style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>
-          {one && one.title}
+        <Typography className={classes.title} color="textPrimary" style={{ color: '#395697', fontSize: '1.1rem', textTransform: 'uppercase' }}>
+          <a id="aStyle" target='blank' href={`${one && one.link}`}>{one && one.title}</a>
         </Typography>
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>
           {one && one.category[0]} 
           <br></br>
-          Posted by {one && one.author.username}
+          <PermIdentityIcon style={{ marginBottom: '-0.5%' }} />{one && one.author.username}
         </Typography>
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>
           About: {one && one.about}
         </Typography>
       </CardContent>
       <CardActions style={{ display: 'flex', justifyContent: 'center', padding: 0 }}>
-        <Button size="small" id="abtn" target='blank' href={`${one && one.link}`}>Read here</Button>
         { logInStatus && logInStatus ? 
-        <ThumbUpAltOutlinedIcon style={{ marginLeft: '10%' }} fontSize="large" 
+        <ThumbUpAltOutlinedIcon fontSize="large" 
         onClick={() =>{handleLikes(one)}} 
         className={ userInfos && userInfos.posts_liked.find(element => element._id === one._id) ? 'blue' : 'grey' } />
         : <p style={{ color: 'rgba(0, 0, 0, 0.54)' }}>likes:</p>
