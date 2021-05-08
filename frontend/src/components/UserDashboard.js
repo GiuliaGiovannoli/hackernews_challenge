@@ -131,7 +131,7 @@ export default function UserDashboard() {
   return (
     <div className={classes.root}>
     {logInStatus && 
-    <Button id="btn" style={{ float: 'right', margin: '2%' }} onClick={() => handleLogOut()}>
+    <Button id="abtn" style={{ float: 'right', margin: '2%' }} onClick={() => handleLogOut()}>
       Log out
     </Button>}
       <AppBar position="static" style={{ backgroundColor: '#3d84b8', marginTop: '2%'  }}>
@@ -167,7 +167,7 @@ export default function UserDashboard() {
         <TableRow>
             <TableCell>Title:  </TableCell>
             <TableCell style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}> {one.title} </TableCell>
-            <TableCell><a id="linkStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
+            <TableCell><a id="aStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
           </TableRow>)
       })}
       </TableHead>
@@ -183,7 +183,7 @@ export default function UserDashboard() {
         <TableRow>
             <TableCell>Title:  </TableCell>
             <TableCell style={{ color: '#3d84b8', fontSize: '1.1rem', textTransform: 'uppercase' }}>{one.title}  </TableCell>
-            <TableCell><a id="linkStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
+            <TableCell><a id="aStyle" target="blank" href={one.link}>Read here  </a> </TableCell>
           </TableRow>)
       })}
       </TableHead>

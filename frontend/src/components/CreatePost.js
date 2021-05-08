@@ -117,8 +117,9 @@ export default function LoginRegister({fetchingPosts}) {
     <Container component="main" maxWidth="s" style={{ display: 'flex', justifyContent: 'center', marginTop: '2%' }}>
       <div className={classes.paper}
       style={{ backgroundColor: '#eeeeee', textAlign: 'center', padding: '1%', borderRadius: '2%', margin: 0, width: '60%' }}>
-        <Typography component="h6" variant="h6">
-          Post your article
+        <Typography component="h6" variant="h6" 
+        style={{ textAlign: 'center', color: '#3d84b8', fontWeigth: 'bold', fontSize: '1.1rem', textTransform: 'uppercase' }}>
+          <h4>POST YOUR ARTICLE</h4>
         </Typography>
         <form className={classes.form} noValidate>
           <TextField
@@ -131,6 +132,7 @@ export default function LoginRegister({fetchingPosts}) {
             autoComplete="title"
             autoFocus
             onChange={handleOnChange}
+            style={{ margin: 0 }}
           />
           <TextField
             margin="normal"
@@ -142,15 +144,8 @@ export default function LoginRegister({fetchingPosts}) {
             id="link"
             autoComplete="link"
             onChange={handleOnChange}
+            style={{ margin: 0 }}
           />
-              <div>
-              <p>Choose the correct category</p>
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Cyber attacks') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber attacks')}/>Cyber attacks   
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Cyber security') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Cyber security')}/>Cyber security   
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Data breaches') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Data breaches')}/>Data breaches   
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Vulnerabilities') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Vulnerabilities')}/>Vulnerabilities   
-      <CheckBoxOutlinedIcon fontSize={'large'} className={post.category.includes('Malware') ? 'blue' : 'grey'} onClick={() => handleOnChecked('Malware')}/>Malware   
-    </div>
           <TextField
             margin="normal"
             required
@@ -161,7 +156,24 @@ export default function LoginRegister({fetchingPosts}) {
             autoComplete="about"
             autoFocus
             onChange={handleOnChange}
+            style={{ margin: 0 }}
           />
+          <div>
+          <p style={{ color: 'rgba(0, 0, 0, 0.54)', fontSize: '1.1rem', textAlign: 'left' }}>Choose the correct category*</p>
+          <div style={{ display: 'flex', alignItems: 'baseline'   }}>
+      <CheckBoxOutlinedIcon fontSize={'medium'} className={post.category.includes('Cyber attacks') ? 'blue' : 'grey'} 
+      onClick={() => handleOnChecked('Cyber attacks')} /><p style={{ color: 'rgba(0, 0, 0, 0.54)', fontSize: '1.1rem', marginRight: '2%' }}>Cyber attacks</p>   
+      <CheckBoxOutlinedIcon fontSize={'medium'} className={post.category.includes('Cyber security') ? 'blue' : 'grey'} 
+      onClick={() => handleOnChecked('Cyber security')}/><p style={{ color: 'rgba(0, 0, 0, 0.54)', fontSize: '1.1rem', marginRight: '2%' }}>Cyber security</p>   
+      <CheckBoxOutlinedIcon fontSize={'medium'} className={post.category.includes('Data breaches') ? 'blue' : 'grey'} 
+      onClick={() => handleOnChecked('Data breaches')}/><p style={{ color: 'rgba(0, 0, 0, 0.54)', fontSize: '1.1rem', marginRight: '2%' }}>Data breaches</p>  
+      <CheckBoxOutlinedIcon fontSize={'medium'} className={post.category.includes('Vulnerabilities') ? 'blue' : 'grey'} 
+      onClick={() => handleOnChecked('Vulnerabilities')}/><p style={{ color: 'rgba(0, 0, 0, 0.54)', fontSize: '1.1rem', marginRight: '2%' }}>Vulnerabilities</p>  
+      <CheckBoxOutlinedIcon fontSize={'medium'} className={post.category.includes('Malware') ? 'blue' : 'grey'} 
+      onClick={() => handleOnChecked('Malware')}/><p style={{ color: 'rgba(0, 0, 0, 0.54)', fontSize: '1.1rem', marginRight: '2%' }}>Malware</p> 
+      </div>
+      <hr></hr>
+    </div>
           <Button
             type="submit"
             fullWidth

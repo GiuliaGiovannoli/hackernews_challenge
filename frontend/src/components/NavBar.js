@@ -103,9 +103,9 @@ export default function NavBar() {
 
   return (
     <React.Fragment>
-      <Toolbar className={classes.toolbar} style={{ backgroundColor: '#eeeeee' }}>
+      <Toolbar className={classes.toolbar} style={{ backgroundColor: '#3d84b8' }}>
       <Button aria-describedby={id} variant="outlined" size="small" id="btn" onClick={handleClick}>
-      <SearchIcon />
+      <SearchIcon style={{ color: '#3d84b8' }} />
         </Button>
         <Typography
           component="h2"
@@ -114,29 +114,29 @@ export default function NavBar() {
           align="center"
           noWrap
           className={classes.toolbarTitle}
-          style={{ color: '#3d84b8', fontWeight: 'bold' }}
+          style={{ color: '#eeeeee', fontWeight: 'bold' }}
         >
         <NavLink to="/" id="linkStyle">
           HACKERNEWS
           </NavLink>
         </Typography>
-        {<NavLink to={logInStatus && logInStatus ?  `access/user/${userInfos && userInfos._id}` : '/access/users'} id="linkStyle" style={{ color: '#eeeeee' }}>
+        {<NavLink to={logInStatus && logInStatus ?  `access/user/${userInfos && userInfos._id}` : '/access/users'} id="linkStyle" style={{ color: '#3d84b8' }}>
         <Button variant="outlined" size="small" id="btn">
-        {logInStatus && logInStatus ? `${userInfos && userInfos.username}` : <PersonOutlineIcon style={{ color: '#eeeeee', backgroundColor: '#3d84b8' }}/> }
+        {logInStatus && logInStatus ? `${userInfos && userInfos.username}` : <PersonOutlineIcon style={{ color: '#3d84b8', backgroundColor: '#eeeeee' }}/> }
         </Button>
         </NavLink>
         }
       </Toolbar>
       <Toolbar component="nav" variant="dense" className={classes.toolbarSecondary}>
-          <NavLink to="/Cyber attacks" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Cyber attacks" id='linkStyle'><Link style={{ textTransform: 'uppercase', color: '#3d84b8' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Cyber attacks </Link></NavLink>
-          <NavLink to="/Cyber security" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Cyber security" id='linkStyle'><Link style={{ textTransform: 'uppercase', color: '#3d84b8' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Cyber security </Link></NavLink>
-          <NavLink to="/Data breaches" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Data breaches" id='linkStyle'><Link style={{ textTransform: 'uppercase', color: '#3d84b8' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Data breaches </Link></NavLink>
-          <NavLink to="/Vulnerabilities" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Vulnerabilities" id='linkStyle'><Link style={{ textTransform: 'uppercase', color: '#3d84b8' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Vulnerabilities </Link></NavLink>
-          <NavLink to="/Malware" id='linkStyle'><Link style={{ textTransform: 'uppercase' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
+          <NavLink to="/Malware" id='linkStyle'><Link style={{ textTransform: 'uppercase', color: '#3d84b8' }} noWrap id='linkStyle' variant="body2" className={classes.toolbarLink}>
           Malware </Link></NavLink>
       </Toolbar>
       <div>
