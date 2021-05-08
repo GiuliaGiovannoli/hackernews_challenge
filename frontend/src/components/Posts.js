@@ -128,8 +128,14 @@ export default function Posts() {
     }
 
     <div style={{ display: 'flex', margin: '2% 15%', flexDirection:'column' }}>
-    { listOfPosts && listOfPosts.length != 1 ? 
-      listOfPosts && listOfPosts.map((one) => {
+    
+    { listOfPosts && listOfPosts.length < 1 ? 
+      (
+      <div><p>No post found.</p>
+      <NavLink to="/" id="linkStyle"><Button id="btn">Back</Button></NavLink></div>) 
+      : null }
+      
+{      listOfPosts && listOfPosts.map((one) => {
       return(
 
         <Card className={classes.root} 
@@ -161,11 +167,7 @@ export default function Posts() {
 
       )
     })
-    : 
-    (
-      <div><p>No post found.</p>
-      <NavLink to="/" id="linkStyle"><Button id="btn">Back</Button></NavLink></div>)
-}
+    }
     </div>
     </>
   );
