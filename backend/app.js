@@ -1,3 +1,4 @@
+const dotEnv = require('dotenv')
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -7,7 +8,7 @@ const cors = require('cors')
 require('./database/client');
 
 const app = express();
-
+dotEnv.config()
 app.use(cors());
 
 app.use(logger('dev'));
@@ -20,9 +21,9 @@ const indexRouter = require('./routes/index');
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts')
 
-app.use('/', indexRouter);
-app.use('/api/users', usersRouter);
 app.use('/api/posts', postsRouter)
+app.use('/api/users', usersRouter);
+app.use('/', indexRouter);
 
 
 module.exports = app;
