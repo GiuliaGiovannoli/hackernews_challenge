@@ -15,6 +15,7 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import ThumbUpAltOutlinedIcon from '@material-ui/icons/ThumbUpAltOutlined';
 import PermIdentityIcon from '@material-ui/icons/PermIdentity';
+import TodayOutlinedIcon from '@material-ui/icons/TodayOutlined';
 
 const useStyles = makeStyles({
   root: {
@@ -149,6 +150,7 @@ export default function Posts() {
           {one && one.category[0]} 
           <br></br>
           <PermIdentityIcon style={{ marginBottom: '-0.5%' }} />{one && one.author.username}
+          <TodayOutlinedIcon style={{ marginBottom: '-0.5%', marginLeft: '2%' }} />{one && one.date_published.slice(0, 10)}
         </Typography>
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>
           About: {one && one.about}

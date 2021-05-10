@@ -1,19 +1,19 @@
 const Post = require('../models/postModel')
 
 exports.create_onePost = async (req, res) => {
-  const { title, link, author, about, category } = req.body
+  const { title, link, author, about, category, date_published } = req.body
   const post = await Post.findOne({title, link})
   if(post) {
     res.status(401).json({
       msg: "Post already exists"
   })} else {
-  Post.create({ title, link, author, about, category })
+  Post.create({ title, link, author, about, category, date_published })
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err.message))}
 }
 
 exports.list_allPosts = async (req, res) => {
-  Post.find().populate('author').sort( { tot_likes: -1 } )
+  Post.find().populate('author').sort( { date_published: -1 } ).sort( { tot_likes: -1 } )
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err.message))
 }
