@@ -44,6 +44,8 @@ export default function LoginRegister({fetchingPosts}) {
 
   const history = useHistory()
 
+  const today = new Date()
+
   const [logInStatus, setLogInStatus] = useContext(LogInStatusContext)
 
   const [userInfos, setUserInfos] = useContext(UserInfosContext)
@@ -51,6 +53,7 @@ export default function LoginRegister({fetchingPosts}) {
   const [post, setPost] = useState({
     title: '',
     link: '',
+    date_published: today,
     about: '',
     author: localStorage.getItem('idUser'),
     category: ''
@@ -86,6 +89,7 @@ export default function LoginRegister({fetchingPosts}) {
         const newPost = {
           title: post && post.title,
           link: post && post.link,
+          date_published: post && post.date_published,
           author: post && post.author,
           about: post && post.about,
           tot_likes: 0,
