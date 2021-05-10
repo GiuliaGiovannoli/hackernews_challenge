@@ -1,20 +1,20 @@
 {
   "files": {
     "main.css": "/hackernews_challenge/static/css/main.d198ff83.chunk.css",
-    "main.js": "/hackernews_challenge/static/js/main.351fb0ec.chunk.js",
-    "main.js.map": "/hackernews_challenge/static/js/main.351fb0ec.chunk.js.map",
+    "main.js": "/hackernews_challenge/static/js/main.9560d07d.chunk.js",
+    "main.js.map": "/hackernews_challenge/static/js/main.9560d07d.chunk.js.map",
     "runtime-main.js": "/hackernews_challenge/static/js/runtime-main.6480a5a0.js",
     "runtime-main.js.map": "/hackernews_challenge/static/js/runtime-main.6480a5a0.js.map",
-    "static/js/2.6d6ec370.chunk.js": "/hackernews_challenge/static/js/2.6d6ec370.chunk.js",
-    "static/js/2.6d6ec370.chunk.js.map": "/hackernews_challenge/static/js/2.6d6ec370.chunk.js.map",
+    "static/js/2.4499040f.chunk.js": "/hackernews_challenge/static/js/2.4499040f.chunk.js",
+    "static/js/2.4499040f.chunk.js.map": "/hackernews_challenge/static/js/2.4499040f.chunk.js.map",
     "index.html": "/hackernews_challenge/index.html",
     "static/css/main.d198ff83.chunk.css.map": "/hackernews_challenge/static/css/main.d198ff83.chunk.css.map",
-    "static/js/2.6d6ec370.chunk.js.LICENSE.txt": "/hackernews_challenge/static/js/2.6d6ec370.chunk.js.LICENSE.txt"
+    "static/js/2.4499040f.chunk.js.LICENSE.txt": "/hackernews_challenge/static/js/2.4499040f.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.6480a5a0.js",
-    "static/js/2.6d6ec370.chunk.js",
+    "static/js/2.4499040f.chunk.js",
     "static/css/main.d198ff83.chunk.css",
-    "static/js/main.351fb0ec.chunk.js"
+    "static/js/main.9560d07d.chunk.js"
   ]
 }
