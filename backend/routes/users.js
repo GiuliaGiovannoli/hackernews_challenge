@@ -11,7 +11,7 @@ const {
   login_user,
   update_user,
   posts_createdByUser
-} = require('../controllers/UserController')
+} = require('../controllers/userController')
 
 router.get('/oneUser/posts/:id', authenticatingUser, posts_createdByUser)
 

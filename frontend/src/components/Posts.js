@@ -149,7 +149,7 @@ export default function Posts() {
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>
           {one && one.category[0]} 
           <br></br>
-          <PermIdentityIcon style={{ marginBottom: '-0.5%' }} />{one && one.author.username}
+          <PermIdentityIcon style={{ marginBottom: '-0.5%' }} />{one && one.author}
           <TodayOutlinedIcon style={{ marginBottom: '-0.5%', marginLeft: '2%' }} />{one && one.date_published.slice(0, 10)}
         </Typography>
         <Typography className={classes.pos} color="textSecondary" style={{ margin: 0 }}>

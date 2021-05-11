@@ -7,7 +7,7 @@ const postSchema = new Schema({
   link: { type: String, required: true, unique: true },
   date_published: { type: Date, required: true },
   category: [ { type: String, required: true } ],
-  author: { type: Schema.Types.ObjectId, ref: "User", required: true },
+  author: { type: String, required: true },
   tot_likes: { type: Number, default: 0 }
 });
 

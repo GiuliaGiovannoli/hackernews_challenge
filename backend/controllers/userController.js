@@ -101,11 +101,11 @@ exports.posts_createdByUser = async (req, res) => {
       {
         $lookup: {
           from: "posts",
-          localField: "_id",
+          localField: "username",
           foreignField: "author",
           as: "postsCreated"
         }
-      }, { $match: { "postsCreated.author": user._id } }
+      }, { $match: { "postsCreated.author": user.username } }
     ])
     .then(data => res.json(data))
     .catch(err => res.status(500).json(err.message))}

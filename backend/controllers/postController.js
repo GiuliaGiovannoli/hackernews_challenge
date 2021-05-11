@@ -7,7 +7,7 @@ exports.create_onePost = async (req, res) => {
     res.status(401).json({
       msg: "Post already exists"
   })} else {
-  Post.create({ title, link, author, about, category, date_published })
+    Post.create({ title, link, author, about, category, date_published })
   .then(data => res.json(data))
   .catch(err => res.status(500).json(err.message))}
 }
@@ -20,7 +20,7 @@ exports.list_allPosts = async (req, res) => {
 
 exports.find_onePost = async (req, res) => {
   const id = req.params.id
-  const post = await Post.findById(id).populate('author')
+  const post = await Post.findById(id)
   if(!post) {
     res.status(401).json({
       msg: "Post does not exist."

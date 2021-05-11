@@ -55,7 +55,7 @@ export default function LoginRegister({fetchingPosts}) {
     link: '',
     date_published: today,
     about: '',
-    author: localStorage.getItem('idUser'),
+    author: userInfos && userInfos.username,
     category: ''
   })
 
