@@ -1,13 +1,45 @@
-Hello there! I am Giulia and I am a full stack Web Developer
+# Hello there! 
 
-My tools are : React, Javascript, Node, Express, HTML, CSS, SQL, MongoDB, Material UI and Bootstrap
+# Hacker News Like
 
-You can find me and reach out on Linkedin www.linkedin.com/in/giulia-giovannoli
+## About
 
-About this Project: Hackernews version with login, registration and creating post by user
+About this Project: Hackernews version with login, registration and creating post by user.
 
-Tools here used: React, Javascript, Material UI, Node, Express, CSS and HTML
+### Feauters
 
---------> For the deployed version please wait 10/30 seconds after clicking on the link. <----------------
+- Router
+- Authentication: login and registration 
+- Posting 
+- Search and Filtering
 
-Thank you for checking the Project!
+## Technologies
+
+This project has been made using:
+
+- JavaScript, [ReactJS](https://reactjs.org/)
+- [JWT](https://jwt.io/)
+- [React Router](https://v5.reactrouter.com/web/guides/quick-start)
+- UI Components: [Bootstrap](https://react-bootstrap.github.io/) & [MUI](https://mui.com/).
+
+## How to Run the Application
+
+1. Npm install
+2. Npm start
+
+It will open automatically the browser at http://localhost:3000 to view it.
+
+### Prerequisites
+
+- [NodeJS](https://nodejs.org/it/download/)
+- [NpmJS](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+
+## Contacts
+
+Feel free to reach out!
+
+- [Linkedin](https://www.linkedin.com/in/giulia-giovannoli/)
+- [GitHub](https://github.com/GiuliaGiovannoli)
+
+
+# Thank you for checking the Project!
